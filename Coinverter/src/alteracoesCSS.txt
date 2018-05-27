@@ -1,0 +1,23 @@
+Padding de 20px no VBOX que contem o label 'DE'
+Padding de 20px no VBOX que contem o label 'PARA'
+LABEL 'lblUnDe' movido para dentro do VBOX que contem o label 'DE' e alinhado a direita
+LABEL 'lblUnPara' movido para dentro do VBOX que contem o label 'PARA' e alinhado a direita
+Aumentado a fonte para 14 px do textfield 'txtValorDe'
+Aumentado a fonte para 14 px do textfield 'txtValorPara'
+Alignment 'CENTER_LEFT' do VBOX que contem o label 'SELECIONE A CONVERSÃO' 
+Adicionado PROMPT TEXT no ComboBox 
+----------------------------------------------------------------------------------------
+>>Ateracoes CSS
+
+VBOX principal 
+fx-background-color: #dcdcdc
+fx-border-color: #5f9ea0
+fx-border-width: 5px
+
+TextField 'DE'
+fx-background-color:  #f0fff0
+fx-border-color:  green
+
+TextField 'PARA'
+fx-background-color: #ffe4c4
+fx-border-color: red
