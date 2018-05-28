@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+
+# Created by https://www.gitignore.io/api/java
+
+### Java ###
+>>>>>>> d67b04a99cde23a824a5a68537fdb1d915422089
 # Compiled class file
 *.class
 
@@ -13,7 +20,10 @@
 # Package Files #
 *.jar
 *.war
+<<<<<<< HEAD
 *.nar
+=======
+>>>>>>> d67b04a99cde23a824a5a68537fdb1d915422089
 *.ear
 *.zip
 *.tar.gz
@@ -21,4 +31,10 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+<<<<<<< HEAD
 /brasileirao2018Elizelton/target/
+=======
+
+
+# End of https://www.gitignore.io/api/java
+>>>>>>> d67b04a99cde23a824a5a68537fdb1d915422089

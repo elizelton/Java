@@ -7,12 +7,12 @@ public class Jogo {
     private byte golA;
     private byte golB;
 
-//    public Jogo(String timeA, String timeB, byte golA, byte golB) {
-//        this.timeA = timeA;
-//        this.timeB = timeB;
-//        this.golA = golA;
-//        this.golB = golB;
-//    }
+    public Jogo(String timeA, String timeB, byte golA, byte golB) {
+        this.timeA = timeA;
+        this.timeB = timeB;
+        this.golA = golA;
+        this.golB = golB;
+    }
 
     public String getTimeA() {
         return timeA;
