@@ -15,17 +15,46 @@
                 <Button mnemonicParsing="false" onAction="#btnAbrirClick" text="Abrir" />
                 <TableView fx:id="tbVwTimes" prefHeight="197.0" prefWidth="590.0">
                     <columns>
-                        <TableColumn editable="false" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" resizable="false" sortable="false" text="Clas" >
+                        <TableColumn editable="false" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" resizable="false" sortable="false" text="Clas" style="-fx-alignment: center" >
                             <cellValueFactory>
                                 <PropertyValueFactory property="clas"/>
                             </cellValueFactory>
                         </TableColumn>  
-                        <TableColumn editable="false" minWidth="50.0" prefWidth="250.0" resizable="false" sortable="false" text="Nome Time" >
+                        <TableColumn editable="false" minWidth="50.0" prefWidth="250.0" resizable="false" sortable="false" text="Nome Time">
                             <cellValueFactory>
-                                <PropertyValueFactory property="nome"/>
+                                <PropertyValueFactory property="nome" />
                             </cellValueFactory>
                         </TableColumn>  
-                        <TableColumn editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" resizable="false" sortable="false" text="Pts" />  
+                        <TableColumn editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" resizable="false" sortable="false" text="Pts" style="-fx-alignment: center">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="Pontos" />
+                            </cellValueFactory>
+                        </TableColumn>  
+                        <TableColumn editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" resizable="false" sortable="false" text="VIT" style="-fx-alignment: center">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="vitorias" />
+                            </cellValueFactory>
+                        </TableColumn>  
+                        <TableColumn editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" resizable="false" sortable="false" text="DER" style="-fx-alignment: center">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="derrotas" />
+                            </cellValueFactory>
+                        </TableColumn>  
+                        <TableColumn editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" resizable="false" sortable="false" text="EMP" style="-fx-alignment: center">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="empates" />
+                            </cellValueFactory>
+                        </TableColumn>  
+                        <TableColumn editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" resizable="false" sortable="false" text="GP" style="-fx-alignment: center">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="GolPro" />
+                            </cellValueFactory>
+                        </TableColumn>  
+                        <TableColumn editable="false" maxWidth="45.0" minWidth="45.0" prefWidth="45.0" resizable="false" sortable="false" text="GC" style="-fx-alignment: center">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="GolsContra" />
+                            </cellValueFactory>
+                        </TableColumn>  
                     </columns>
                 </TableView>
             </children>

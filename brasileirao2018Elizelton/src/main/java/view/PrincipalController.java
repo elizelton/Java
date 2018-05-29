@@ -40,7 +40,7 @@ public class PrincipalController implements Initializable {
         time1 = new Time("Internacional", 12, 10, 5, 10, 0);
         time1.setClas((byte) 1);
         lstPrinc.add(time1);
-        time2 = new Time("Gremio", 12, 10, 5, 10, 0);
+        time2 = new Time("Gremio", 5, 10, 2, 1, 3);
         time2.setClas((byte) 2);
         lstPrinc.add(time2);
         tbVwTimes.setItems(FXCollections.observableList(lstPrinc));
