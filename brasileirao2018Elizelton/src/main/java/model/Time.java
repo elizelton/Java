@@ -9,35 +9,29 @@ public class Time {
     private int vitorias = 0;
     private int derrotas = 0;
     private int empates = 0;
-    private int golsPro = 0;
-    private int golsContra = 0;
+    private int golPro = 0;
+    private int golContra = 0;
+    private byte clas = 0;
     private List<Jogo> jogos = new ArrayList<Jogo>();
-
+    
+    public Time() {
+        
+    }
+    
     public Time(String nome) {
         this.nome = nome;
     }
-
-    public Time() {
-    }
-
-    public Time(String nome, int vitorias, int derrotas, int empates, int golPro, int golsContra) {
+    
+    public Time(String nome, int vitorias, int derrotas, int empates, int golPro, int golContra) {
         this.nome = nome;
         this.vitorias = vitorias;
         this.derrotas = derrotas;
         this.empates = empates;
-        this.golsPro = golPro;
-        this.golsContra = golsContra;
+        this.golPro = golPro;
+        this.golContra = golContra;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getVitorias() {
+    
+        public int getVitorias() {
         return vitorias;
     }
 
@@ -50,57 +44,72 @@ public class Time {
     }
 
     public int getGolPro() {
-        return golsPro;
+        return golPro;
     }
 
-    public int getGolsContra() {
-        return golsContra;
+    public int getGolContra() {
+        return golContra;
     }
 
     public byte getClas() {
         return clas;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    public void addVitorias() {
+        this.vitorias++;
+    }
+    
+    public void addDerrotas() {
+        this.derrotas++;
+    }
+    
+    public void addEmpates() {
+        this.empates++;
+    }
+    
+    public void addGolPro(int gols) {
+        this.golPro += gols;
+    }
+    
+    public void addGolContra(int gols) {
+        this.golContra += gols;
+    }  
+
+    public String getNome() {
+        return nome;
+    }
+
     public void setClas(byte clas) {
         this.clas = clas;
     }
-    private byte clas = 0;
-
-    public void addVitoria() {
-        this.vitorias++;
-    }
-
-    public void addDerrota() {
-        this.derrotas++;
-    }
-
-    public void addEmpate() {
-        this.empates++;
-    }
-
-    public void addGolsPro(int gols) {
-        this.golsPro += gols;
-    }
-
-    public void addGolsContra(int gols) {
-        this.golsPro += gols;
-    }
-
+    
     public int getSaldoGols() {
-        return golsPro - golsContra;
+        return golPro = golContra;
     }
-
-    public int getPartidas() {
-        return (vitorias + empates + derrotas);
-    }
-
+    
     public int getPontos() {
         return (vitorias * 3) + empates;
+    }
+    
+    public int getPartidas() {
+        return vitorias + empates + derrotas;
+    }
+
+    public List<Jogo> getJogos() {
+        return jogos;
+    }
+
+    public void setJogos(List<Jogo> jogos) {
+        this.jogos = jogos;
     }
 
     @Override
     public String toString() {
-        return "Time{" + "nome=" + nome + ", vitorias=" + vitorias + ", derrotas=" + derrotas + ", empates=" + empates + ", golsPro=" + golsPro + ", golsContra=" + golsContra + ", clas=" + clas + '}';
+        return "Time{" + "nome=" + nome + ", vitorias=" + vitorias + ", derrotas=" + derrotas + ", empates=" + empates + ", golPro=" + golPro + ", golContra=" + golContra + ", clas=" + clas + '}';
     }
-
+    
 }
