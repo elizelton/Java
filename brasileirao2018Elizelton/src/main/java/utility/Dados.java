@@ -9,19 +9,19 @@ import model.Jogo;
 import model.Time;
 
 public class Dados {
-    
+
     private BufferedReader br = null;
     private String nomeArq;
     private Jogo jgLinha;
     List<Time> lstTimes = new ArrayList<>();
-    
+
     public Dados(String nomeArq) {
         this.nomeArq = nomeArq;
     }
-    
+
     public List<Time> ler() {
         String linha;
-        
+
         try {
             br = new BufferedReader(new FileReader(nomeArq));
             while ((linha = br.readLine()) != null) {
@@ -30,52 +30,71 @@ public class Dados {
             }
             // Ordena
             byte i = 0;
-            for ( Time t : lstTimes ){
+            for (Time t : lstTimes) {
                 t.setClas(++i);
             }
-            
-        } catch (Exception e){
+
+        } catch (Exception e) {
         } finally {
             try {
-                if(br != null){
-                   br.close();
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException ex) {
             }
-        } catch (IOException ex) {
-        }    
-    }
-        
+        }
+
+        //Ordenar Classificação
+        ordena();
+
         return lstTimes;
-    } 
-    
-    private void ordena(){
-        
     }
-    
-    private Time achaTime(String nomeBusca){
-        
+
+    private void ordena() {
+        Time aux;
+        int j;
+        for (int i = 1; i < lstTimes.size(); i++) {
+            j = i;
+            while (j > 0 && ((lstTimes.get(j - 1).getPontos() < lstTimes.get(j).getPontos())
+                    || ((lstTimes.get(j - 1).getPontos() == lstTimes.get(j).getPontos())
+                    && (lstTimes.get(j - 1).getVitorias() < lstTimes.get(j).getVitorias()))
+                    || ((lstTimes.get(j - 1).getVitorias() == lstTimes.get(j).getVitorias())
+                    && (lstTimes.get(j - 1).getDerrotas() > lstTimes.get(j).getDerrotas()))
+                    || ((lstTimes.get(j - 1).getDerrotas() == lstTimes.get(j).getDerrotas())
+                    && ((lstTimes.get(j - 1).getEmpates() < lstTimes.get(j).getEmpates()))))) {
+                aux = lstTimes.get(j - 1);
+                lstTimes.set(j - 1, lstTimes.get(j));
+                lstTimes.set(j, aux);
+                j--;
+            }
+        }
+
+    }
+
+    private Time achaTime(String nomeBusca) {
+
         for (Time t : lstTimes) {
-            if (t.getNome().equals(nomeBusca)){
+            if (t.getNome().equals(nomeBusca)) {
                 return t;
             }
         }
         // Criando novo time caso o mesmo não exista.
         Time timeNovo = new Time(nomeBusca);
         lstTimes.add(timeNovo);
-        return(timeNovo);
+        return (timeNovo);
     }
-    
-    
+
     private void analisa(Jogo jg) {
         Time posTimeA = achaTime(jg.getTimeA());
-        Time posTimeB = achaTime(jg.getTimeB());        
-    
+        Time posTimeB = achaTime(jg.getTimeB());
+
         posTimeA.getJogos().add(jg);
         posTimeB.getJogos().add(jg);
-        
-        if (jg.getGolA() > jg.getGolB()){   // A ganhou.
+
+        if (jg.getGolA() > jg.getGolB()) {   // A ganhou.
             posTimeA.addVitorias();
             posTimeB.addDerrotas();
-        } else if (jg.getGolA() < jg.getGolB()){    // B ganhou.
+        } else if (jg.getGolA() < jg.getGolB()) {    // B ganhou.
             posTimeB.addVitorias();
             posTimeA.addDerrotas();
         } else {    // Empate.
@@ -84,7 +103,7 @@ public class Dados {
         }
         posTimeA.addGolPro(jg.getGolA());
         posTimeB.addGolPro(jg.getGolB());
-        
+
         posTimeA.addGolContra(jg.getGolB());
         posTimeB.addGolContra(jg.getGolA());
     }
