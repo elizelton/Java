@@ -45,7 +45,11 @@ public class Dados {
     }
         
         return lstTimes;
-    }    
+    } 
+    
+    private void ordena(){
+        
+    }
     
     private Time achaTime(String nomeBusca){
         
