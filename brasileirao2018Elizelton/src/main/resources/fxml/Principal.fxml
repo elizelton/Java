@@ -13,7 +13,7 @@
         <VBox prefHeight="480.0" prefWidth="600.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Button mnemonicParsing="false" onAction="#btnAbrirClick" text="Abrir" />
-                <TableView fx:id="tbVwTimes" prefHeight="197.0" prefWidth="590.0">
+                <TableView fx:id="tbVwTimes" prefHeight="410.0" prefWidth="590.0">
                     <columns>
                         <TableColumn editable="false" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" style="-fx-alignment: center" text="Clas">
                             <cellValueFactory>
