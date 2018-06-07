@@ -1,7 +1,7 @@
 package model;
 
 public class Jogo {
-    
+
     private String timeA;
     private String timeB;
     private byte golA;
@@ -13,17 +13,17 @@ public class Jogo {
         this.golA = golA;
         this.golB = golB;
     }
-    
+
     public Jogo(String linha) {
         String[] partes = linha.split("\\,");   // Dividir a string em partes. 
         this.timeA = partes[0];
-        
+
         this.golA = Byte.parseByte(partes[1]);
-        
+
         this.timeB = partes[2];
-        
+
         this.golB = Byte.parseByte(partes[3]);
-        
+
     }
 
     public String getTimeA() {
@@ -57,5 +57,5 @@ public class Jogo {
     public void setGolB(byte golB) {
         this.golB = golB;
     }
-    
+
 }

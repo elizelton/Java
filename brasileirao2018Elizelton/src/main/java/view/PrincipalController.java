@@ -7,9 +7,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
+import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Time;
@@ -24,8 +29,41 @@ public class PrincipalController implements Initializable {
 
     private Dados dados;
 
+<<<<<<< HEAD
+=======
+    @FXML
+    private StackPane pnJogos;
+    @FXML
+    private Label lblTimeSelecionado;
+
+>>>>>>> Java/master
     @FXML
     private TableView tbVwTimes;
+
+    @FXML
+    private TableView tbVwJogos;
+
+    @FXML
+    private void tbVwTimesClick(Event event) {
+        MouseEvent me = null;
+        Time timesel;
+        if (event.getEventType() == MOUSE_CLICKED) {
+            me = (MouseEvent) event;
+            if (me.getClickCount() == 2) {
+                timesel = (Time) tbVwTimes.getSelectionModel().getSelectedItem();
+                pnJogos.setVisible(true);
+                lblTimeSelecionado.setText(String.format("Time: %s", timesel.getNome()));
+                tbVwJogos.setItems(FXCollections.observableList(timesel.getJogos()));
+                System.out.println(timesel);
+                System.out.println(timesel.getJogos());
+            }
+        }
+    }
+
+    @FXML
+    private void btnFecharTimeSelecionado(ActionEvent event) {
+        pnJogos.setVisible(false);
+    }
 
     @FXML
     private void btnAbrirClick(ActionEvent event) {
@@ -34,7 +72,11 @@ public class PrincipalController implements Initializable {
         fileChooser.setTitle("Escolha o seu arquivo Txt");
 
 //        Diretorio inicial Linux
+<<<<<<< HEAD
 //        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
+=======
+        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
+>>>>>>> Java/master
 //        Diretorio inicial Windows
         fileChooser.setInitialDirectory(new File("C:\\Dados\\"));
 
@@ -63,6 +105,7 @@ public class PrincipalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        pnJogos.setVisible(false);
 
     }
 }
