@@ -48,7 +48,7 @@ public class Dados {
     } 
     
     private void ordena(){
-        
+        Time timeAux;
     }
     
     private Time achaTime(String nomeBusca){

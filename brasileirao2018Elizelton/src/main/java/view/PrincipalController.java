@@ -23,7 +23,7 @@ public class PrincipalController implements Initializable {
     Time time2;
 
     private Dados dados;
-    
+
     @FXML
     private TableView tbVwTimes;
 
@@ -32,19 +32,18 @@ public class PrincipalController implements Initializable {
         final Stage stage = null;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Escolha o seu arquivo Txt");
-        
+
 //        Diretorio inicial Linux
-        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
-        
+//        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
 //        Diretorio inicial Windows
-//        fileChooser.setInitialDirectory(new File("C:\\Dados));
+        fileChooser.setInitialDirectory(new File("C:\\Dados\\"));
 
         dados = new Dados(String.valueOf(fileChooser.showOpenDialog(stage)));
         // Cria o objeto Dados na memória passando por parâmetro o nome.
-        
+
         lstPrinc = dados.ler();
         // Ler e interpretar o arquivo e devolver uma lista.
-        
+
 //        time1 = new Time("Inter", 2, 1, 1, 10, 5);
 //        time1.setClas((byte) 1);
 //        lstPrinc.add(time1);
@@ -52,10 +51,9 @@ public class PrincipalController implements Initializable {
 //        time2 = new Time("Gremio", 3, 1, 2, 13, 7);
 //        time2.setClas((byte) 2);
 //        lstPrinc.add(time2);
-
         // Mostra os times no TableView.
         tbVwTimes.setItems(FXCollections.observableList(lstPrinc));
-        
+
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
                 "Text Files", "*.txt"
         );
