@@ -53,6 +53,7 @@ public class Dados {
     private void ordena() {
         Time aux;
         int j;
+        byte clas = 0;
         for (int i = 1; i < lstTimes.size(); i++) {
             j = i;
             while (j > 0 && ((lstTimes.get(j - 1).getPontos() < lstTimes.get(j).getPontos())
@@ -65,8 +66,11 @@ public class Dados {
                 aux = lstTimes.get(j - 1);
                 lstTimes.set(j - 1, lstTimes.get(j));
                 lstTimes.set(j, aux);
+                lstTimes.get(j).setClas(clas);
+                clas++;
                 j--;
             }
+//            clas++;
         }
 
     }
