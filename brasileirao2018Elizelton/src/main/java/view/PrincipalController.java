@@ -52,11 +52,13 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void tbVwTimesClick(Event event) {
+
         MouseEvent me = null;
         if (event.getEventType() == MOUSE_CLICKED) {
             me = (MouseEvent) event;
             if (me.getClickCount() == 2) {
                 getJogosTimeSelecionado();
+
             }
         }
     }
@@ -99,9 +101,9 @@ public class PrincipalController implements Initializable {
         fileChooser.setTitle("Escolha o seu arquivo Txt");
 
 //        Diretorio inicial Linux
-        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
+//        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
 //        Diretorio inicial Windows
-//        fileChooser.setInitialDirectory(new File("C:\\Dados));
+        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
 
         dados = new Dados(String.valueOf(fileChooser.showOpenDialog(stage)));
         // Cria o objeto Dados na memória passando por parâmetro o nome.
