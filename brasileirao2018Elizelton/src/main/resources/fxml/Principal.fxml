@@ -11,7 +11,26 @@
 
 <AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
     <children>
-        <VBox prefHeight="480.0" prefWidth="600.0" spacing="5.0" style="-fx-background-color: #3a606e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="BOTTOM_LEFT" prefWidth="700.0" style="-fx-background-color: #1b2f33;">
+         <children>
+              <MenuBar fx:id="mnBarPrincipal">
+                  <menus>
+                      <Menu text="_Arquivo">
+                          <items>
+                              <MenuItem text="_Abrir" />
+                              <MenuItem onAction="#mnFecharClick" text="_Fechar" />
+                          </items>
+                      </Menu>
+                      <Menu text="_Times">
+                          <items>
+                              <MenuItem fx:id="mnJogos" disable="true" onAction="#mnExibirTimeSelecionado" text="Exibir _Jogos" />
+                          </items>
+                      </Menu>
+                  </menus>
+              </MenuBar>
+         </children>
+      </HBox>
+        <VBox layoutY="25.0" prefHeight="480.0" prefWidth="600.0" spacing="5.0" style="-fx-background-color: #3a606e;" AnchorPane.bottomAnchor="-25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
             <children>
                 <Button mnemonicParsing="false" onAction="#btnAbrirClick" style="-fx-background-color: #c8c6af;" text="Abrir" />
                 <TableView fx:id="tbVwTimes" onMouseClicked="#tbVwTimesClick" prefHeight="410.0" prefWidth="590.0" style="-fx-background-color: #c8c6af;">
@@ -57,78 +76,110 @@
                             </cellValueFactory>
                         </TableColumn>  
                     </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem fx:id="mnCtxJogos" disable="true" mnemonicParsing="false" onAction="#mnCtxMostrarJogoTimeSelecionado" text="Exibir Jogos" />
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
                 </TableView>
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </VBox>
-      <StackPane fx:id="pnJogos" prefHeight="480.0" prefWidth="600.0" style="-fx-background-color: #e0e0e0; -fx-border-color: #3a606e; -fx-border-width: 5;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
-         <children>
-            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #3c4937; -fx-border-width: 5; -fx-border-color: black;">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="25.0" prefWidth="670.0" style="-fx-background-color: #3c4937;">
+        <StackPane fx:id="pnJogos" alignment="BOTTOM_RIGHT" prefHeight="480.0" prefWidth="600.0" style="-fx-background-color: #e0e0e0; -fx-border-color: #3a606e; -fx-border-width: 5;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+            <children>
+                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #3c4937; -fx-border-width: 5; -fx-border-color: black;">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="670.0" style="-fx-background-color: #3c4937;">
+                            <children>
+                                <Label fx:id="lblTimeSelecionado" text="Jogos do Time" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </HBox>
+                  <MenuBar prefWidth="100.0">
+                    <menus>
+                      <Menu text="_Vitorias">
+                        <items>
+                          <MenuItem onAction="#mnGetVitoriasCasaClick" text="_Casa" />
+                              <MenuItem text="_Visitante" />
+                        </items>
+                      </Menu>
+                      <Menu text="_Derrotas">
+                           <items>
+                              <MenuItem text="_Casa" />
+                              <MenuItem text="_Visitante" />
+                           </items>
+                      </Menu>
+                        <Menu text="_Empates">
+                           <items>
+                              <MenuItem text="_Casa" />
+                              <MenuItem text="_Visitante" />
+                           </items>
+                        </Menu>
+                    </menus>
+                  </MenuBar>
+                        <TableView fx:id="tbVwJogos" fixedCellSize="0.0" prefWidth="600.0" style="-fx-background-color: #c8c6af;">
+                            <columns>
+                                <TableColumn editable="false" minWidth="50.0" prefWidth="242.5" sortable="false" text="Time Casa">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="timeA" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                                <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" sortable="false" style="-fx-alignment: center" text="Gols">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="golA" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn editable="false" maxWidth="15.0" minWidth="15.0" prefWidth="15.0" sortable="false" style="-fx-alignment: center" text="X">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="X" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                                <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" sortable="false" style="-fx-alignment: center" text="Gols">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="golB" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                                <TableColumn minWidth="50.0" prefWidth="242.5" text="Time Visitante">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="timeB" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label fx:id="lblTimeSelecionado" text="Jogos do Time" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
+                        <Button mnemonicParsing="false" style="-fx-background-color: #c8c6af;" text="Remover Filtros" />
+                              <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#btnFecharTimeSelecionado" style="-fx-background-color: #c8c6af;" text="Fechar " />
                      </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
                   </HBox>
-                  <TableView fx:id="tbVwJogos" fixedCellSize="0.0" prefWidth="600.0" style="-fx-background-color: #c8c6af;">
-                    <columns>
-                      <TableColumn editable="false" minWidth="50.0" prefWidth="242.5" sortable="false" text="Time Casa">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="timeA" />
-                            </cellValueFactory>
-                        </TableColumn> 
-                      <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" sortable="false" style="-fx-alignment: center" text="Gols">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="golA" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn editable="false" maxWidth="15.0" minWidth="15.0" prefWidth="15.0" sortable="false" style="-fx-alignment: center" text="X">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="X" />
-                           </cellValueFactory>
-                        </TableColumn> 
-                        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" sortable="false" style="-fx-alignment: center" text="Gols">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="golB" />
-                            </cellValueFactory>
-                        </TableColumn> 
-                        <TableColumn minWidth="50.0" prefWidth="242.5" text="Time Visitante">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="timeB" />
-                            </cellValueFactory>
-                        </TableColumn> 
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-                  <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#btnFecharTimeSelecionado" style="-fx-background-color: #c8c6af;" text="Fechar ">
-                     <VBox.margin>
-                        <Insets right="10.0" />
-                     </VBox.margin></Button>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <StackPane.margin>
-                  <Insets />
-               </StackPane.margin>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
-            </VBox>
-         </children>
-         <opaqueInsets>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </opaqueInsets></StackPane>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <StackPane.margin>
+                        <Insets />
+                    </StackPane.margin>
+                    <padding>
+                        <Insets bottom="5.0" />
+                    </padding>
+                </VBox>
+            </children>
+            <opaqueInsets>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </opaqueInsets>
+        </StackPane>
     </children>
 </AnchorPane>

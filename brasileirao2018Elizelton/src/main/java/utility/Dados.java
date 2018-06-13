@@ -70,8 +70,6 @@ public class Dados {
         }
         for (byte i = 1; i < lstTimes.size(); i++) {
             lstTimes.get(i).setClas(i);
-            System.out.println(i);
-            System.out.println(lstTimes.get(i).getNome());
         }
     }
 
