@@ -13,15 +13,15 @@
     <children>
         <VBox prefHeight="480.0" prefWidth="600.0" spacing="5.0" style="-fx-background-color: #3a606e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#btnAbrirClick" text="Abrir" />
-                <TableView fx:id="tbVwTimes" onMouseClicked="#tbVwTimesClick" prefHeight="410.0" prefWidth="590.0">
+                <Button mnemonicParsing="false" onAction="#btnAbrirClick" style="-fx-background-color: #c8c6af;" text="Abrir" />
+                <TableView fx:id="tbVwTimes" onMouseClicked="#tbVwTimesClick" prefHeight="410.0" prefWidth="590.0" style="-fx-background-color: #c8c6af;">
                     <columns>
                         <TableColumn editable="false" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" style="-fx-alignment: center" text="Clas">
                             <cellValueFactory>
                                 <PropertyValueFactory property="clas" />
                             </cellValueFactory>
                         </TableColumn>  
-                        <TableColumn editable="false" minWidth="50.0" prefWidth="250.0" resizable="false" sortable="false" text="Nome Time">
+                        <TableColumn editable="false" minWidth="50.0" prefWidth="250.0" resizable="false" sortable="false" text="Time">
                             <cellValueFactory>
                                 <PropertyValueFactory property="nome" />
                             </cellValueFactory>
@@ -65,9 +65,9 @@
         </VBox>
       <StackPane fx:id="pnJogos" prefHeight="480.0" prefWidth="600.0" style="-fx-background-color: #e0e0e0; -fx-border-color: #3a606e; -fx-border-width: 5;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
          <children>
-            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #607b7d; -fx-border-width: 5; -fx-border-color: #455759;">
+            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #3c4937; -fx-border-width: 5; -fx-border-color: black;">
                <children>
-                  <HBox alignment="CENTER" prefHeight="25.0" prefWidth="670.0" style="-fx-background-color: #607b7d;">
+                  <HBox alignment="CENTER" prefHeight="25.0" prefWidth="670.0" style="-fx-background-color: #3c4937;">
                      <children>
                         <Label fx:id="lblTimeSelecionado" text="Jogos do Time" textFill="WHITE">
                            <font>
@@ -79,7 +79,7 @@
                         <Insets />
                      </opaqueInsets>
                   </HBox>
-                  <TableView fx:id="tbVwJogos" fixedCellSize="0.0" prefWidth="600.0">
+                  <TableView fx:id="tbVwJogos" fixedCellSize="0.0" prefWidth="600.0" style="-fx-background-color: #c8c6af;">
                     <columns>
                       <TableColumn editable="false" minWidth="50.0" prefWidth="242.5" sortable="false" text="Time Casa">
                             <cellValueFactory>
@@ -111,7 +111,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#btnFecharTimeSelecionado" style="-fx-background-color: #efefef;" text="Fechar ">
+                  <Button alignment="CENTER" cancelButton="true" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#btnFecharTimeSelecionado" style="-fx-background-color: #c8c6af;" text="Fechar ">
                      <VBox.margin>
                         <Insets right="10.0" />
                      </VBox.margin></Button>
