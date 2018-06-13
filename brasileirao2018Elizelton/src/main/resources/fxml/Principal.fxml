@@ -13,6 +13,7 @@
     <children>
         <VBox prefHeight="480.0" prefWidth="600.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
+            <HBox prefHeight="50.0" prefWidth="200.0" />
                 <Button mnemonicParsing="false" onAction="#btnAbrirClick" text="Abrir" />
                 <TableView fx:id="tbVwTimes" onMouseClicked="#tbVwTimesClick" prefHeight="410.0" prefWidth="590.0">
                     <columns>
@@ -57,13 +58,20 @@
                             </cellValueFactory>
                         </TableColumn>  
                     </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem fx:id="mnCtxJogos" disable="true" mnemonicParsing="false" onAction="#mnCtxMostrarJogoTimeSelecionado" text="Exibir Jogos" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
                 </TableView>
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </VBox>
-      <StackPane fx:id="pnJogos" prefHeight="480.0" prefWidth="600.0" style="-fx-background-color: grey; -fx-opacity: ;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <StackPane fx:id="pnJogos" prefHeight="480.0" prefWidth="600.0" style="-fx-background-color: grey; -fx-opacity: ;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <VBox alignment="TOP_RIGHT" opacity="0.19" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-opacity: 100;">
                <children>
@@ -127,5 +135,20 @@
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </opaqueInsets></StackPane>
+      <MenuBar>
+        <menus>
+          <Menu text="_Arquivo">
+            <items>
+                  <MenuItem text="_Abrir" />
+              <MenuItem onAction="#mnFecharClick" text="_Fechar" />
+            </items>
+          </Menu>
+          <Menu text="_Times">
+            <items>
+              <MenuItem fx:id="mnJogos" disable="true" onAction="#mnExibirTimeSelecionado" text="Exibir _Jogos" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
     </children>
 </AnchorPane>
