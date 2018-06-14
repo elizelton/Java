@@ -11,7 +11,7 @@ public class Time {
     private int empates = 0;
     private int golPro = 0;
     private int golContra = 0;
-    private byte clas = 0;
+    private Integer clas = 0;
     private List<Jogo> jogos = new ArrayList<Jogo>();
 
     public Time() {
@@ -51,7 +51,7 @@ public class Time {
         return golContra;
     }
 
-    public byte getClas() {
+    public Integer getClas() {
         return clas;
     }
 
@@ -83,7 +83,7 @@ public class Time {
         return nome;
     }
 
-    public void setClas(byte clas) {
+    public void setClas(Integer clas) {
         this.clas = clas;
     }
 
@@ -110,11 +110,41 @@ public class Time {
     public List<Jogo> getVitoriasCasa() {
         List<Jogo> jogosCasa = new ArrayList<Jogo>();
         for (Jogo j : jogos) {
-            if (j.getTimeA() == this.getNome() && j.getGolA() > j.getGolB()) {
+            if (j.getTimeA().equals(this.getNome()) && j.getGolA() > j.getGolB()) {
                 jogosCasa.add(j);
             }
         }
         return jogosCasa;
+    }
+
+    public List<Jogo> getDerrotasCasa() {
+        List<Jogo> jogosCasa = new ArrayList<Jogo>();
+        for (Jogo j : jogos) {
+            if (j.getTimeA().equals(this.getNome()) && j.getGolA() < j.getGolB()) {
+                jogosCasa.add(j);
+            }
+        }
+        return jogosCasa;
+    }
+
+    public List<Jogo> getVitoriasVisitante() {
+        List<Jogo> jogosVisitante = new ArrayList<Jogo>();
+        for (Jogo j : jogos) {
+            if (j.getTimeB().equals(this.getNome()) && j.getGolA() < j.getGolB()) {
+                jogosVisitante.add(j);
+            }
+        }
+        return jogosVisitante;
+    }
+
+    public List<Jogo> getDerrotasVisitante() {
+        List<Jogo> jogosVisitante = new ArrayList<Jogo>();
+        for (Jogo j : jogos) {
+            if (j.getTimeB().equals(this.getNome()) && j.getGolA() > j.getGolB()) {
+                jogosVisitante.add(j);
+            }
+        }
+        return jogosVisitante;
     }
 
     @Override

@@ -68,8 +68,10 @@ public class Dados {
                 j--;
             }
         }
-        for (byte i = 1; i < lstTimes.size(); i++) {
-            lstTimes.get(i).setClas(i);
+        Integer i = 1;
+        for (Time l : lstTimes) {
+            l.setClas(i);
+            i++;
         }
     }
 
