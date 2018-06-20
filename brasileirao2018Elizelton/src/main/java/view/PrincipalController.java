@@ -168,9 +168,9 @@ public class PrincipalController implements Initializable {
         fileChooser.setTitle("Escolha o seu arquivo Txt");
 
 //        Diretorio inicial Linux
-        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
+//        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
 //        Diretorio inicial Windows
-//        fileChooser.setInitialDirectory(new File("c:\\Dados\\"));
+        fileChooser.setInitialDirectory(new File("c:\\Dados\\"));
 
         dados = new Dados(String.valueOf(fileChooser.showOpenDialog(stage)));
         // Cria o objeto Dados na memória passando por parâmetro o nome.

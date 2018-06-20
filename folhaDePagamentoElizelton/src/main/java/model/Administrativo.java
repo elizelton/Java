@@ -13,4 +13,9 @@ public class Administrativo extends Funcionario {
         return salario;
     }
 
+    @Override
+    public String toString() {
+        return "Administrativo {" + "nome=" + nome + " salario=" + salario + '}';
+    }
+
 }

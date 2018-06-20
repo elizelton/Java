@@ -1,9 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="view.PrincipalController" />
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #fcfdff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label text="Folha de Pagamento ">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" style="-fx-background-color: #acbfbc;" />
+            <HBox prefHeight="123.0" prefWidth="580.0" style="-fx-background-color: #fcfdff;">
+               <children>
+                  <VBox minWidth="100.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Label text="Função">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="rdBtnGerente" mnemonicParsing="false" selected="true" text="Gerente ">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="funcao1" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rdBtnAdm" mnemonicParsing="false" text="Administrativo" toggleGroup="$funcao1" />
+                        <RadioButton fx:id="rdBtnVend" mnemonicParsing="false" text="Vendedor" toggleGroup="$funcao1" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </HBox.margin></Separator>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Dados">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <VBox prefWidth="100.0">
+                           <children>
+                              <Label text="Nome" />
+                              <TextField fx:id="txtFldNomeFunc" maxWidth="100.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" />
+                              <VBox prefWidth="100.0">
+                                 <children>
+                                    <Label text="Salário" />
+                                 </children>
+                              </VBox>
+                              <TextField fx:id="txtFldSalFunc" maxWidth="100.0" minWidth="50.0" prefHeight="25.0" prefWidth="200.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </HBox.margin></Separator>
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label text="Sexo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="rdBtnFem" mnemonicParsing="false" selected="true" text="Masculino">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="sexo" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton mnemonicParsing="false" text="Feminino" toggleGroup="$sexo" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnCadastrarFunc" mnemonicParsing="false" onAction="#btnCadastrarFuncClick" text="Cadastrar" />
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+            <VBox prefHeight="450.0">
+               <children>
+                  <TableView>
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
