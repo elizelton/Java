@@ -133,9 +133,9 @@
                                         <PropertyValueFactory property="golA" />
                                     </cellValueFactory>
                                 </TableColumn>
-                                <TableColumn editable="false" maxWidth="15.0" minWidth="15.0" prefWidth="15.0" sortable="false" style="-fx-alignment: center" text="X">
+                                <TableColumn editable="false" maxWidth="15.0" minWidth="20.0" prefWidth="20.0" sortable="false" style="-fx-alignment: center" text="X">
                                     <cellValueFactory>
-                                        <PropertyValueFactory property="X" />
+                                        <PropertyValueFactory property=" X " />
                                     </cellValueFactory>
                                 </TableColumn> 
                                 <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" sortable="false" style="-fx-alignment: center" text="Gols">
