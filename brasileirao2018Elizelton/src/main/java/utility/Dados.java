@@ -29,7 +29,7 @@ public class Dados {
                 analisa(jgLinha);
             }
             // Ordena
-            byte i = 0;
+            Integer i = 0;
             for (Time t : lstTimes) {
                 t.setClas(++i);
             }
