@@ -2,22 +2,34 @@ package model;
 
 abstract public class Funcionario {
 
-    String nome;
-    double salario;
-    String sexo;
+    private String nome;
+    private double salario;
+    private String sexo;
+
+    protected Funcionario(String nome, double salario, String sexo) {
+        setNome(nome);
+        setSalario(salario);
+        setSexo(sexo);
+    }
 
     abstract public double getSalarioFinal();
 
-    public Class<? extends Funcionario> getTipo() {
-        return this.getClass();
+    public String getTipo() {
+        return this.getClass().getSimpleName();
     }
+
+    abstract public double getExtras();
 
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome.isEmpty()) {
+            this.nome = "Indefinido";
+        } else {
+            this.nome = nome;
+        }
     }
 
     public double getSalario() {
@@ -25,11 +37,20 @@ abstract public class Funcionario {
     }
 
     public void setSalario(double salario) {
-        if (salario < 0) {
-            this.salario = 0;
+        if (salario < 954) {
+            this.salario = 954;
         } else {
             this.salario = salario;
         }
+    }
+
+    public String getSexoExibir() {
+        if (sexo.equals("M")) {
+            return "Masculino";
+        } else {
+            return "Feminino";
+        }
+
     }
 
     public String getSexo() {
@@ -37,7 +58,14 @@ abstract public class Funcionario {
     }
 
     public void setSexo(String sexo) {
-        this.sexo = sexo;
+        this.sexo = sexo.toUpperCase();
+        if(!sexo.contains("MF")){
+            this.sexo = "M";
+        }
     }
 
+    @Override
+    public String toString() {
+        return (String.format("NOME =%s | SEXO = %s | FUNCAO = %s | SALARIO = %.2f | EXTRAS = %s", getNome(), getSexoExibir(), getTipo(), getSalario(), getExtras()));
+    }
 }

@@ -19,7 +19,7 @@ public class MainApp extends Application {
         
         stage.setTitle("Folha de Pagamento - Elizelton");
         stage.setScene(scene);
-        stage.show();
+//        stage.show();
     }
 
     /**

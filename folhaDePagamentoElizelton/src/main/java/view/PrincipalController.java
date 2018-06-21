@@ -1,12 +1,10 @@
 package view;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -44,20 +42,20 @@ public class PrincipalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-//         Fazer Bind   
-//        btnCadastrarFunc.
-        
-        Gerente gerComer = new Gerente("Elizelton", 10000, "Masculino", 1000);
-        Gerente gerVendas = new Gerente("Elizelton", 12000, "Masculino", 5000);
-        Gerente gerAdm = new Gerente("Elizelton", 8000, "Masculino", 3000);
-        Gerente gerTi = new Gerente("Elizelton", 8000, "Masculino", 4000);
-        Administrativo auxAdmComp = new Administrativo("João", 3000, "Masculino");
-        Administrativo auxAdmRh = new Administrativo("João", 2000, "Masculino");
-        Administrativo auxAdmVend = new Administrativo("João", 2500, "Masculino");
-        Vendedor vendInter = new Vendedor("Maria", 3000, "Feminino", 10000);
-        Vendedor vendAgro = new Vendedor("Maria", 3000, "Feminino", 50000);
-        Vendedor vendVeic = new Vendedor("Maria", 3000, "Feminino", 100000);
+
+        btnCadastrarFunc.disableProperty().bind(txtFldNomeFunc.textProperty().isEmpty().or(txtFldSalFunc.textProperty().isEmpty()));
+
+        Gerente gerComer = new Gerente("Elizelton", 10000, "M", -1000);
+        Gerente gerVendas = new Gerente("Julio", 12000, "M", -5000);
+        Gerente gerAdm = new Gerente("Fernanda", 750, "F", 800);
+        Gerente gerTi = new Gerente(" ", 8000, "F", 4000);
+        Administrativo auxAdmComp = new Administrativo("Barbara", 3000, "F");
+        Administrativo auxAdmRh = new Administrativo("João", 2000, "M");
+        Administrativo auxAdmVend = new Administrativo("Jorge", 2500, "M");
+        Vendedor vendInter = new Vendedor("Natalia", 3000, "f", -10000);
+        Vendedor vendAgro = new Vendedor("Rafael", 3000, "MF", 50000);
+        Vendedor vendVeic = new Vendedor("Maria", -3000, "MF", 100000);
+
         lstFuncionarios.add(gerComer);
         lstFuncionarios.add(gerVendas);
         lstFuncionarios.add(gerAdm);
@@ -76,5 +74,6 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void btnCadastrarFuncClick(ActionEvent event) {
+        System.out.println("Botao cadastrar");
     }
 }

@@ -5,10 +5,8 @@ public class Vendedor extends Funcionario {
     private double venda;
 
     public Vendedor(String nome, double salario, String sexo, double venda) {
-        setNome(nome);
-        setSalario(salario);
-        setSexo(sexo);
-        this.venda = venda;
+      super(nome, salario, sexo);
+       this.setVenda(venda);
     }
 
     public double getVenda() {
@@ -16,17 +14,25 @@ public class Vendedor extends Funcionario {
     }
 
     public void setVenda(double venda) {
-        this.venda = venda;
+        if (venda >= 0) {
+            this.venda = venda;
+        } else {
+            this.venda = 0;
+        }
     }
 
     @Override
     public double getSalarioFinal() {
-        return (salario + (venda * 0.04));
+        return (salario + getComissao());
+    }
+
+    public double getComissao() {
+        return (venda * 0.04);
     }
 
     @Override
-    public String toString() {
-        return "Vendedor {" + "nome=" + nome + " salario=" + salario + " Comissão=" + (venda * 0.04) + '}';
+    public double getExtras() {
+        return getComissao();
     }
 
 }

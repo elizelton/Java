@@ -5,10 +5,8 @@ public class Gerente extends Funcionario {
     private double bonificacao;
 
     public Gerente(String nome, double salario, String sexo, double bonificacao) {
-        setNome(nome);
-        setSalario(salario);
-        setSexo(sexo);
-        this.bonificacao = bonificacao;
+        super(nome, salario, sexo);
+        this.setBonificacao(bonificacao);
     }
 
     @Override
@@ -16,9 +14,21 @@ public class Gerente extends Funcionario {
         return (salario + bonificacao);
     }
 
+    public double getBonificacao() {
+        return bonificacao;
+    }
+
+    public void setBonificacao(double bonificacao) {
+        if (bonificacao >= 0) {
+            this.bonificacao = bonificacao;
+        } else {
+            this.bonificacao = 0;
+        }
+    }
+
     @Override
-    public String toString() {
-        return "Gerente {" + "nome=" + nome + " salario=" +salario + " bonificacao=" + bonificacao + '}';
+    public double getExtras() {
+        return getBonificacao();
     }
 
 }

@@ -3,9 +3,7 @@ package model;
 public class Administrativo extends Funcionario {
 
     public Administrativo(String nome, double salario, String sexo) {
-        setNome(nome);
-        setSalario(salario);
-        setSexo(sexo);
+       super(nome,salario,sexo);
     }
 
     @Override
@@ -14,8 +12,8 @@ public class Administrativo extends Funcionario {
     }
 
     @Override
-    public String toString() {
-        return "Administrativo {" + "nome=" + nome + " salario=" + salario + '}';
+    public double getExtras() {
+        return 0;
     }
 
 }
