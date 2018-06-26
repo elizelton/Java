@@ -8,7 +8,7 @@ public class Administrativo extends Funcionario {
 
     @Override
     public double getSalarioFinal() {
-        return salario;
+        return  getSalario();
     }
 
     @Override

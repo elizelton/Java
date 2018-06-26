@@ -23,7 +23,7 @@ public class Vendedor extends Funcionario {
 
     @Override
     public double getSalarioFinal() {
-        return (salario + getComissao());
+        return (getSalario() + getComissao());
     }
 
     public double getComissao() {

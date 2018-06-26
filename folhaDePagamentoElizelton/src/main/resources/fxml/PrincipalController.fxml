@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
    <children>
       <VBox prefHeight="600.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #fcfdff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -19,7 +19,7 @@
                </font>
             </Label>
             <Separator prefWidth="200.0" style="-fx-background-color: #acbfbc;" />
-            <HBox prefHeight="123.0" prefWidth="580.0" style="-fx-background-color: #fcfdff;">
+            <HBox prefHeight="119.0" prefWidth="725.0" style="-fx-background-color: #fcfdff;">
                <children>
                   <VBox minWidth="100.0" prefWidth="100.0" spacing="10.0">
                      <children>
@@ -93,13 +93,17 @@
                   <Button fx:id="btnCadastrarFunc" mnemonicParsing="false" onAction="#btnCadastrarFuncClick" text="Cadastrar" />
                </children>
             </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0" />
             <VBox prefHeight="450.0">
                <children>
                   <TableView>
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn prefWidth="230.0" sortable="false" text="Nome " />
+                      <TableColumn minWidth="0.0" prefWidth="113.0" sortable="false" text="Tipo" />
+                        <TableColumn prefWidth="88.0" sortable="false" text="Sexo" />
+                        <TableColumn minWidth="50.0" prefWidth="110.0" sortable="false" text="Salario Base" />
+                        <TableColumn prefWidth="112.0" sortable="false" text="Extras" />
+                        <TableColumn prefWidth="126.0" sortable="false" text="Salario Final" />
                     </columns>
                   </TableView>
                </children>
