@@ -24,44 +24,44 @@ import model.Gerente;
 import model.Vendedor;
 
 public class PrincipalController implements Initializable {
-    
+
     @FXML
     private Button btnCadastrarFunc;
-    
+
     @FXML
     private RadioButton rdBtnGerente;
-    
+
     @FXML
     private RadioButton rdBtnAdm;
-    
+
     @FXML
     private RadioButton rdBtnMasc;
-    
+
     @FXML
     private TextField txtFldNomeFunc;
-    
+
     @FXML
     private TextField txtFldSalFunc;
-    
+
     @FXML
     private TextField txtFldExtra;
-    
+
     @FXML
     private Label lblExtra;
-    
+
     @FXML
     private VBox vBoxExtra;
-    
+
     @FXML
     private TableView tbVwFuncs;
-    
+
     private List<Funcionario> lstFuncionarios = new ArrayList<Funcionario>();
-    
+
     private final char separadorDecimal = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         txtFldNomeFunc.requestFocus();
         rdBtnGerenteSelect();
         btnCadastrarFunc.disableProperty().bind(txtFldNomeFunc.textProperty().isEmpty().or(txtFldSalFunc.textProperty().isEmpty()));
@@ -109,44 +109,54 @@ public class PrincipalController implements Initializable {
                 }
         );
     }
-    
+
     @FXML
     private void btnCadastrarFuncClick(ActionEvent event) {
         String sexo;
-        
+
         if (rdBtnMasc.isSelected()) {
             sexo = "M";
         } else {
             sexo = "F";
         }
-        
+
         if (rdBtnAdm.isSelected()) {
             lstFuncionarios.add(new Administrativo(txtFldNomeFunc.getText(), Float.valueOf(txtFldSalFunc.getText()), sexo));
-            
+
         } else if (rdBtnGerente.isSelected()) {
-            
+            lstFuncionarios.add(new Gerente(txtFldNomeFunc.getText(), Float.valueOf(txtFldSalFunc.getText()), sexo, Float.valueOf(txtFldExtra.getText())));
+
         } else {
-            
+            lstFuncionarios.add(new Vendedor(txtFldNomeFunc.getText(), Float.valueOf(txtFldSalFunc.getText()), sexo, Float.valueOf(txtFldExtra.getText())));
+
         }
         tbVwFuncs.setItems(FXCollections.observableArrayList(lstFuncionarios));
+        
+        
+        txtFldNomeFunc.requestFocus();
+        txtFldNomeFunc.clear();
+        txtFldExtra.clear();
+        txtFldSalFunc.clear();
+        rdBtnGerente.setSelected(true);
+        rdBtnMasc.setSelected(true);
     }
-    
+
     @FXML
     private void rdBtnGerenteSelect() {
         vBoxExtra.setVisible(true);
         lblExtra.setText("Total Bonificações");
     }
-    
+
     @FXML
     private void rdBtnAdmSelect(ActionEvent event) {
         vBoxExtra.setVisible(false);
     }
-    
+
     @FXML
     private void rdBtnVendSelect(ActionEvent event) {
         vBoxExtra.setVisible(true);
         lblExtra.setText("Total Vendas");
-        
+
     }
-    
+
 }
