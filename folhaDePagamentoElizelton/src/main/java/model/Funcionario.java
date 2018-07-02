@@ -59,13 +59,13 @@ abstract public class Funcionario {
 
     public void setSexo(String sexo) {
         this.sexo = sexo.toUpperCase();
-        if(!sexo.contains("MF")){
-            this.sexo = "M";
+        if (!sexo.equals("M") && !sexo.equals("F")) {
+            this.sexo = "I";
         }
     }
 
     @Override
     public String toString() {
-        return (String.format("NOME =%s | SEXO = %s | FUNCAO = %s | SALARIO = %.2f | EXTRAS = %s", getNome(), getSexoExibir(), getTipo(), getSalario(), getExtras()));
+        return (String.format("NOME =%s | SEXO = %s %s | FUNCAO = %s | SALARIO = %.2f | EXTRAS = %s", getNome(), getSexo(), getSexoExibir(), getTipo(), getSalario(), getExtras()));
     }
 }

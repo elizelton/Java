@@ -1,114 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PrincipalController">
-   <children>
-      <VBox prefHeight="600.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #fcfdff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <children>
-            <Label text="Folha de Pagamento ">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Separator prefWidth="200.0" style="-fx-background-color: #acbfbc;" />
-            <HBox prefHeight="119.0" prefWidth="725.0" style="-fx-background-color: #fcfdff;">
-               <children>
-                  <VBox minWidth="100.0" prefWidth="100.0" spacing="10.0">
-                     <children>
-                        <Label text="Função">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <RadioButton fx:id="rdBtnGerente" mnemonicParsing="false" selected="true" text="Gerente ">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="funcao1" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="rdBtnAdm" mnemonicParsing="false" text="Administrativo" toggleGroup="$funcao1" />
-                        <RadioButton fx:id="rdBtnVend" mnemonicParsing="false" text="Vendedor" toggleGroup="$funcao1" />
-                     </children>
-                  </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0">
-                     <HBox.margin>
-                        <Insets left="30.0" right="30.0" />
-                     </HBox.margin></Separator>
-                  <VBox spacing="5.0">
-                     <children>
-                        <Label text="Dados">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <VBox prefWidth="100.0">
-                           <children>
-                              <Label text="Nome" />
-                              <TextField fx:id="txtFldNomeFunc" maxWidth="100.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" />
-                              <VBox prefWidth="100.0">
-                                 <children>
-                                    <Label text="Salário" />
-                                 </children>
-                              </VBox>
-                              <TextField fx:id="txtFldSalFunc" maxWidth="100.0" minWidth="50.0" prefHeight="25.0" prefWidth="200.0" />
-                           </children>
+    <children>
+        <VBox prefHeight="600.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #fcfdff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <Label text="Folha de Pagamento ">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Separator prefWidth="200.0" style="-fx-background-color: #acbfbc;" />
+                <HBox prefHeight="119.0" prefWidth="725.0" style="-fx-background-color: #fcfdff;">
+                    <children>
+                        <VBox minWidth="100.0" prefHeight="121.0" prefWidth="129.0" spacing="10.0">
+                            <children>
+                                <Label text="Função">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <RadioButton fx:id="rdBtnGerente" mnemonicParsing="false" onAction="#rdBtnGerenteSelect" selected="true" text="Gerente ">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="funcao1" />
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="rdBtnAdm" mnemonicParsing="false" onAction="#rdBtnAdmSelect" text="Administrativo" toggleGroup="$funcao1" />
+                                <RadioButton fx:id="rdBtnVend" mnemonicParsing="false" onAction="#rdBtnVendSelect" text="Vendedor" toggleGroup="$funcao1" />
+                            </children>
                         </VBox>
-                     </children>
-                  </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="200.0">
-                     <HBox.margin>
-                        <Insets left="30.0" right="30.0" />
-                     </HBox.margin></Separator>
-                  <VBox prefWidth="100.0" spacing="5.0">
-                     <children>
-                        <Label text="Sexo">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <RadioButton fx:id="rdBtnFem" mnemonicParsing="false" selected="true" text="Masculino">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="sexo" />
-                           </toggleGroup></RadioButton>
-                        <RadioButton mnemonicParsing="false" text="Feminino" toggleGroup="$sexo" />
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="btnCadastrarFunc" mnemonicParsing="false" onAction="#btnCadastrarFuncClick" text="Cadastrar" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-            <VBox prefHeight="450.0">
-               <children>
-                  <TableView>
-                    <columns>
-                      <TableColumn prefWidth="230.0" sortable="false" text="Nome " />
-                      <TableColumn minWidth="0.0" prefWidth="113.0" sortable="false" text="Tipo" />
-                        <TableColumn prefWidth="88.0" sortable="false" text="Sexo" />
-                        <TableColumn minWidth="50.0" prefWidth="110.0" sortable="false" text="Salario Base" />
-                        <TableColumn prefWidth="112.0" sortable="false" text="Extras" />
-                        <TableColumn prefWidth="126.0" sortable="false" text="Salario Final" />
-                    </columns>
-                  </TableView>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </children>
+                        <Separator orientation="VERTICAL" prefHeight="200.0">
+                            <HBox.margin>
+                                <Insets left="30.0" right="30.0" />
+                            </HBox.margin>
+                        </Separator>
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label text="Dados">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <VBox prefWidth="100.0">
+                                    <children>
+                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                            <children>
+                                                <Label text="Nome" />
+                                                <TextField fx:id="txtFldNomeFunc" maxWidth="100.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" />
+                                            </children>
+                                        </VBox>
+                                        <VBox prefWidth="100.0">
+                                            <children>
+                                                <Label text="Salário" />
+                                                <TextField fx:id="txtFldSalFunc" maxWidth="100.0" minWidth="50.0" prefHeight="25.0" prefWidth="200.0" />
+                                            </children>
+                                        </VBox>
+                                        <VBox fx:id="vBoxExtra" prefWidth="100.0" visible="false">
+                                            <children>
+                                                <Label fx:id="lblExtra" />
+                                                <TextField fx:id="txtFldExtra" maxWidth="100.0" minWidth="50.0" prefHeight="25.0" prefWidth="200.0" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0">
+                            <HBox.margin>
+                                <Insets left="30.0" right="30.0" />
+                            </HBox.margin>
+                        </Separator>
+                        <VBox prefWidth="100.0" spacing="5.0">
+                            <children>
+                                <Label text="Sexo">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <RadioButton fx:id="rdBtnMasc" mnemonicParsing="false" selected="true" text="Masculino">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="sexo" />
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="rdBtnFem" mnemonicParsing="false" text="Feminino" toggleGroup="$sexo" />
+                            </children>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Button fx:id="btnCadastrarFunc" mnemonicParsing="false" onAction="#btnCadastrarFuncClick" text="Cadastrar" />
+                    </children>
+                </HBox>
+                <VBox prefHeight="450.0">
+                    <children>
+                        <TableView fx:id="tbVwFuncs">
+                            <columns>
+                                <TableColumn editable="false" prefWidth="230.0" sortable="false" text="Nome">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Nome" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                                <TableColumn editable="false" minWidth="0.0" prefWidth="113.0" sortable="false" text="Tipo">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Tipo" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                                <TableColumn editable="false" prefWidth="88.0" sortable="false" text="Sexo">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="SexoExibir" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                                <TableColumn editable="false" minWidth="50.0" prefWidth="110.0" sortable="false" text="Salario Base">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Salario" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                                <TableColumn editable="false" prefWidth="112.0" sortable="false" text="Extras">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Extras" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                                <TableColumn editable="false" prefWidth="126.0" sortable="false" text="Salario Final">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="SalarioFinal" />
+                                    </cellValueFactory>
+                                </TableColumn> 
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

@@ -8,48 +8,62 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import model.Administrativo;
 import model.Funcionario;
 import model.Gerente;
 import model.Vendedor;
 
 public class PrincipalController implements Initializable {
-
+    
     @FXML
     private Button btnCadastrarFunc;
-
+    
     @FXML
     private RadioButton rdBtnGerente;
-
+    
     @FXML
     private RadioButton rdBtnAdm;
-
-    @FXML
-    private RadioButton rdBtnVend;
-
+    
     @FXML
     private RadioButton rdBtnMasc;
-
+    
     @FXML
     private TextField txtFldNomeFunc;
-
+    
     @FXML
     private TextField txtFldSalFunc;
-
+    
+    @FXML
+    private TextField txtFldExtra;
+    
+    @FXML
+    private Label lblExtra;
+    
+    @FXML
+    private VBox vBoxExtra;
+    
+    @FXML
+    private TableView tbVwFuncs;
+    
     private List<Funcionario> lstFuncionarios = new ArrayList<Funcionario>();
-
+    
     private final char separadorDecimal = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         txtFldNomeFunc.requestFocus();
+        rdBtnGerenteSelect();
         btnCadastrarFunc.disableProperty().bind(txtFldNomeFunc.textProperty().isEmpty().or(txtFldSalFunc.textProperty().isEmpty()));
 
 //        Gerente gerComer = new Gerente("Elizelton", 10000, "M", -1000);
@@ -62,7 +76,6 @@ public class PrincipalController implements Initializable {
 //        Vendedor vendInter = new Vendedor("Natalia", 3000, "f", -10000);
 //        Vendedor vendAgro = new Vendedor("Rafael", 3000, "MF", 50000);
 //        Vendedor vendVeic = new Vendedor("Maria", -3000, "MF", 100000);
-
 //        lstFuncionarios.add(gerComer);
 //        lstFuncionarios.add(gerVendas);
 //        lstFuncionarios.add(gerAdm);
@@ -73,7 +86,6 @@ public class PrincipalController implements Initializable {
 //        lstFuncionarios.add(vendInter);
 //        lstFuncionarios.add(vendAgro);
 //        lstFuncionarios.add(vendVeic);
-
         for (Funcionario func : lstFuncionarios) {
             System.out.println(func);
         }
@@ -87,7 +99,6 @@ public class PrincipalController implements Initializable {
 //                    }
 //                }
 //        );
-
         txtFldSalFunc.textProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     if (!newValue.matches("\\d*(\\" + separadorDecimal + "\\d*)?") && !newValue.isEmpty()) {
@@ -98,10 +109,44 @@ public class PrincipalController implements Initializable {
                 }
         );
     }
-
+    
     @FXML
     private void btnCadastrarFuncClick(ActionEvent event) {
-        System.out.println("Botao cadastrar");
+        String sexo;
+        
+        if (rdBtnMasc.isSelected()) {
+            sexo = "M";
+        } else {
+            sexo = "F";
+        }
+        
+        if (rdBtnAdm.isSelected()) {
+            lstFuncionarios.add(new Administrativo(txtFldNomeFunc.getText(), Float.valueOf(txtFldSalFunc.getText()), sexo));
+            
+        } else if (rdBtnGerente.isSelected()) {
+            
+        } else {
+            
+        }
+        tbVwFuncs.setItems(FXCollections.observableArrayList(lstFuncionarios));
     }
-
+    
+    @FXML
+    private void rdBtnGerenteSelect() {
+        vBoxExtra.setVisible(true);
+        lblExtra.setText("Total Bonificações");
+    }
+    
+    @FXML
+    private void rdBtnAdmSelect(ActionEvent event) {
+        vBoxExtra.setVisible(false);
+    }
+    
+    @FXML
+    private void rdBtnVendSelect(ActionEvent event) {
+        vBoxExtra.setVisible(true);
+        lblExtra.setText("Total Vendas");
+        
+    }
+    
 }
