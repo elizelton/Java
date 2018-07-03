@@ -1,3 +1,15 @@
 .button {
     -fx-font-weight: bold;
 }
+
+.administrativo{
+    -fx-background-color:bisque;
+}
+
+.gerente{
+    -fx-background-color:aquamarine;
+}
+
+.vendedor{
+    -fx-background-color:forestgreen;
+}

@@ -28,13 +28,12 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <RadioButton fx:id="rdBtnGerente" mnemonicParsing="false" onAction="#rdBtnGerenteSelect" selected="true" text="Gerente ">
+                                <RadioButton fx:id="rdBtnAdm" mnemonicParsing="false" onAction="#rdBtnAdmSelect" selected="true" text="Administrativo">
                                     <toggleGroup>
                                         <ToggleGroup fx:id="funcao1" />
-                                    </toggleGroup>
-                                </RadioButton>
-                                <RadioButton fx:id="rdBtnAdm" mnemonicParsing="false" onAction="#rdBtnAdmSelect" text="Administrativo" toggleGroup="$funcao1" />
+                                    </toggleGroup></RadioButton>
                                 <RadioButton fx:id="rdBtnVend" mnemonicParsing="false" onAction="#rdBtnVendSelect" text="Vendedor" toggleGroup="$funcao1" />
+                                <RadioButton fx:id="rdBtnGerente" mnemonicParsing="false" onAction="#rdBtnGerenteSelect" text="Gerente " toggleGroup="$funcao1" />
                             </children>
                         </VBox>
                         <Separator orientation="VERTICAL" prefHeight="200.0">
@@ -103,7 +102,10 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                     <children>
-                        <Button fx:id="btnCadastrarFunc" mnemonicParsing="false" onAction="#btnCadastrarFuncClick" text="Cadastrar" />
+                        <Button fx:id="btnCadastrarFunc" mnemonicParsing="false" onAction="#btnCadastrarFuncClick" text="Cadastrar">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
                     </children>
                 </HBox>
                 <VBox prefHeight="450.0">
@@ -125,17 +127,17 @@
                                         <PropertyValueFactory property="SexoExibir" />
                                     </cellValueFactory>
                                 </TableColumn> 
-                                <TableColumn editable="false" minWidth="50.0" prefWidth="110.0" sortable="false" text="Salario Base">
+                                <TableColumn editable="false" minWidth="50.0" prefWidth="110.0" sortable="false" style="-fx-alignment: center" text="Salario Base">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="Salario" />
                                     </cellValueFactory>
                                 </TableColumn> 
-                                <TableColumn editable="false" prefWidth="112.0" sortable="false" text="Extras">
+                                <TableColumn editable="false" prefWidth="112.0" sortable="false" style="-fx-alignment: center" text="Extras">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="Extras" />
                                     </cellValueFactory>
                                 </TableColumn> 
-                                <TableColumn editable="false" prefWidth="126.0" sortable="false" text="Salario Final">
+                                <TableColumn editable="false" prefWidth="126.0" sortable="false" style="-fx-alignment: center" text="Salario Final">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="SalarioFinal" />
                                     </cellValueFactory>
