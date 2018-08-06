@@ -11,7 +11,6 @@ public class Config {
     public static final DateTimeFormatter df = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
     public static final NumberFormat nfc = NumberFormat.getCurrencyInstance();
 
-
     public static final char INCLUIR = 'I';
     public static final char ALTERAR = 'A';
     public static final char EXCLUIR = 'E';

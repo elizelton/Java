@@ -2,6 +2,7 @@ package model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -14,14 +15,29 @@ public class Disciplina {
     private String codigo;
     private String nome;
     private int aulas;
-    private String observador;
+    private String observacao;
 
-    public Disciplina(String codigo, String nome, int aulas, String observador) {
+    public Disciplina(String codigo, String nome, int aulas, String observacao) {
         this.codigo = codigo;
         this.nome = nome;
         this.aulas = aulas;
-        this.observador = observador;
+        this.observacao = observacao;
+
     }
+
+    public Disciplina(String codigo, String nome, int aulas, String observacao, Professor professor) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.aulas = aulas;
+        this.observacao = observacao;
+        this.professor = professor;
+    }
+
+    public Disciplina() {
+
+    }
+    @DBRef
+    private Professor professor;
 
     public String getCodigo() {
         return codigo;
@@ -47,12 +63,20 @@ public class Disciplina {
         this.aulas = aulas;
     }
 
-    public String getObservador() {
-        return observador;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setObservador(String observador) {
-        this.observador = observador;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     @Override
@@ -63,11 +87,7 @@ public class Disciplina {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 53 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
-        hash = 53 * hash + (this.nome != null ? this.nome.hashCode() : 0);
-        hash = 53 * hash + this.aulas;
-        hash = 53 * hash + (this.observador != null ? this.observador.hashCode() : 0);
+        hash = 83 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
     }
 
@@ -83,19 +103,7 @@ public class Disciplina {
             return false;
         }
         final Disciplina other = (Disciplina) obj;
-        if (this.aulas != other.aulas) {
-            return false;
-        }
         if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
-            return false;
-        }
-        if ((this.codigo == null) ? (other.codigo != null) : !this.codigo.equals(other.codigo)) {
-            return false;
-        }
-        if ((this.nome == null) ? (other.nome != null) : !this.nome.equals(other.nome)) {
-            return false;
-        }
-        if ((this.observador == null) ? (other.observador != null) : !this.observador.equals(other.observador)) {
             return false;
         }
         return true;

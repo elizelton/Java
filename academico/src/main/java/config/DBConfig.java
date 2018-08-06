@@ -22,5 +22,5 @@ public class DBConfig extends AbstractMongoConfiguration {
         MongoClient client = new MongoClient("localhost");
         return client;
     }
-
+    
 }
