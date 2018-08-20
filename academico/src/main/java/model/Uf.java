@@ -6,6 +6,7 @@
 package model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,26 +15,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Muriel
  */
 @Document
-public class Cidade {
+public class Uf {
     @Id
     private String id;
     private String nome;
-    @DBRef
-    private Uf uf;
+    @Indexed(unique=true)
+    private String sigla;
 
-    public Cidade(String nome, Uf uf) {
+    public Uf(String nome, String sigla) {
         this.nome = nome;
-        this.uf = uf;
+        this.sigla = sigla;
     }
 
-    public Cidade() {
+    public Uf() {
     }
 
     
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
+        int hash = 3;
+        hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
     }
 
@@ -48,7 +49,7 @@ public class Cidade {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cidade other = (Cidade) obj;
+        final Uf other = (Uf) obj;
         if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
             return false;
         }
@@ -64,12 +65,12 @@ public class Cidade {
         this.nome = nome;
     }
 
-    public Uf getUf() {
-        return uf;
+    public String getSigla() {
+        return sigla;
     }
 
-    public void setUf(Uf uf) {
-        this.uf = uf;
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
     
     

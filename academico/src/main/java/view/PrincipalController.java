@@ -1,8 +1,5 @@
 package view;
 
-import static config.DAO.disciplinaRepository;
-import static config.DAO.professorRepository;
-import static config.DAO.unidadeFederacaoRepository;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,87 +8,84 @@ import javafx.fxml.Initializable;
 import model.Cidade;
 import model.Disciplina;
 import model.Professor;
-import model.UnidadeFederacao;
+import model.Uf;
+import static config.DAO.disciplinaRepository;
+import static config.DAO.professorRepository;
+import static config.DAO.cidadeRepository;
+import static config.DAO.ufRepository;
 
 public class PrincipalController implements Initializable {
+    
 
+    
     Disciplina disciplina;
     Professor professor;
     Cidade cidade;
-    UnidadeFederacao uf;
-    List<Disciplina> lstDisc = new ArrayList<Disciplina>();
-
+    Uf uf;
+    List<Cidade> lstCit =   new ArrayList<Cidade>();
+    List<Uf> lstUf  =   new ArrayList<Uf>();
+    List<Disciplina> lstDisc    =   new ArrayList<Disciplina>();
+    List<Professor> lstProf    =   new ArrayList<Professor>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //        disciplina = disciplinaRepository.findByCodigo("000004");
-        //        lstDisc = disciplinaRepository.findByNomeLikeIgnoreCase("InGLeS");
-
-        //        System.out.println(lstDisc);
-        //        disciplinaRepository.delete(lstDisc.get(0));
-        //        disciplina = new Disciplina("000011", "Ingles Tecnico", 10, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = new Disciplina("000002", "Portugues", 20, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = new Disciplina("000003", "Espanhol", 20, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = new Disciplina("000004", "Frances", 20, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = new Disciplina("000005", "Alemao", 20, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = new Disciplina("000006", "Japones", 20, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = new Disciplina("000007", "Chines", 20, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = new Disciplina("000008", "Mandarim", 20, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = new Disciplina("000009", "Italiano", 20, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = new Disciplina("000010", "Russo", 20, "");
-        //        disciplinaRepository.save(disciplina);
-        //        disciplina = disciplinaRepository.findByCodigo("000004");
-        //
-        //        System.out.println(disciplina);
-        //        System.out.println(disciplina.getAulas());
-        //
-        //        disciplina.setAulas(150);
-        //        disciplinaRepository.save(disciplina);
-        //
-        //        disciplina = disciplinaRepository.findByCodigo("000004");
-        //        System.out.println(disciplina);
-        //        System.out.println(disciplina.getAulas());
-        //        professor = new Professor("Maria", "maria@gmail.com", "105.654.805-90");
-        //        professorRepository.save(professor);
-        //        professor = new Professor("Julia", "julia@hotmail.com", "650.320.546-20");
-        //        professorRepository.save(professor);
-        //        professor = new Professor("Fernanda", "fernanda@gmail.com", "156.365.505-78");
-        //        professorRepository.save(professor);
         
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("AC", "Acre"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("AL", "Alagoas"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("AP", "Amapá"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("AM", "Amazonas"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("BA", "Bahia"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("CE", "Ceará"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("DF", "Distrito Federal"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("ES", "Espírito Santo"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("GO", "Goiás"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("MA", "Maranhão"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("MT", "Mato Grosso"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("MS", "Mato Grosso do Sul"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("MG", "Minas Gerais"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("PA", "Pará"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("PB", "Paraíba"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("PI", "Piauí"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("PR", "Paraná"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("PE", "Pernambuco"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("RJ", "Rio de Janeiro"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("RN", "Rio Grande do Norte"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("RS", "Rio Grande do Sul"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("RO", "Rondônia"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("RR", "Roraima"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("SC", "Santa Catarina"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("SP", "São Paulo"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("SE", "Sergipe"));
-//        unidadeFederacaoRepository.save(new UnidadeFederacao("TO", "Tocantins"));
-    }
+//        /**
+//         * Salva os estados e suas Siglas
+//         */
+//        uf = new Uf("Paraná","PR");
+//        ufRepository.save(uf);
+//        uf = new Uf("Rio Grande de Sul","RS");
+//        ufRepository.save(uf);
+//        uf = new Uf("São Paulo","SP");
+//        ufRepository.save(uf);
+//        uf = new Uf("Rio de Janeiro","RJ");
+//        ufRepository.save(uf);
+//        uf = new Uf("Amazonas","AM");
+//        ufRepository.save(uf);
+//        uf = new Uf("Piauí","PI");
+//        ufRepository.save(uf);
+//        uf = new Uf("Maranhão","MA");
+//        ufRepository.save(uf);
+//        uf = new Uf("Tocantins","TO");
+//        ufRepository.save(uf);
+//        uf = new Uf("Rio Grande do Norte","RN");
+//        ufRepository.save(uf);
+//         /**
+//         * Encontra as Siglas na tabela uf e cria um link com a cidade
+//         */
+//        uf =  ufRepository.findBySiglaLikeIgnoreCase("PR");
+//        
+//        cidade = new Cidade("Porto Amazonas",uf);
+//        cidadeRepository.save(cidade);
+//        
+//        uf =  ufRepository.findBySiglaLikeIgnoreCase("RS");
+//        cidade = new Cidade("Gramado",uf);
+//        cidadeRepository.save(cidade);
+//       
+//        uf =  ufRepository.findBySiglaLikeIgnoreCase("SP");
+//        cidade = new Cidade("São Paulo",uf);
+//        cidadeRepository.save(cidade);
+//        
+//        uf =  ufRepository.findBySiglaLikeIgnoreCase("RJ");
+//        cidade = new Cidade("Rio de Janeiro",uf);
+//        cidadeRepository.save(cidade);
+//            /**
+//             * Cria professor com cidade
+//             */
+//            professor =   new Professor("Antonio","antonio@email.com","123298131",cidadeRepository.findByNome("Porto Amazonas"));
+//            professorRepository.save(professor);
+//            professor =   new Professor("José","jose@email.com","2131290331",cidadeRepository.findByNome("Gramado"));
+//            professorRepository.save(professor);
+//            professor =   new Professor("Bruna","bruna@email.com","90932131",cidadeRepository.findByNome("Rio de Janeiro"));
+//            professorRepository.save(professor);
+//            /**
+//             * -------------------------
+//             */
+//            /**
+//             * Cria disciplinas com professor
+//             */
+//             professor =  professorRepository.findByNome("Antonio");
+//             disciplina =   new Disciplina(professor,"64565","Matemática",10,"Nenhuma");
+//             disciplinaRepository.save(disciplina);
+    }    
 }

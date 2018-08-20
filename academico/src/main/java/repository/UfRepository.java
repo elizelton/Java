@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package repository;
-import model.Cidade;
+import java.util.List;
+import model.Uf;
 import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  *
  * @author Muriel
  */
-public interface CidadeRepository extends MongoRepository<Cidade, String> {
-    public Cidade findByNome(String nome);
+public interface UfRepository extends MongoRepository<Uf, String>{
+        public Uf findBySiglaLikeIgnoreCase(String sigla);
 }

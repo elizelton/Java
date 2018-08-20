@@ -7,16 +7,31 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Disciplina {
-
+ 
     @Id
     private String id;
-
+    
+    @DBRef
+    private Professor professor;
     @Indexed(unique = true)
     private String codigo;
+    
     private String nome;
     private int aulas;
     private String observacao;
 
+    public Disciplina() {
+    }
+
+    public Disciplina(Professor professor, String codigo, String nome, int aulas, String observacao) {
+        this.professor = professor;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.aulas = aulas;
+        this.observacao = observacao;
+    }
+
+    
     public Disciplina(String codigo, String nome, int aulas, String observacao) {
         this.codigo = codigo;
         this.nome = nome;
@@ -25,19 +40,13 @@ public class Disciplina {
 
     }
 
-    public Disciplina(String codigo, String nome, int aulas, String observacao, Professor professor) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.aulas = aulas;
-        this.observacao = observacao;
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
         this.professor = professor;
     }
-
-    public Disciplina() {
-
-    }
-    @DBRef
-    private Professor professor;
 
     public String getCodigo() {
         return codigo;
@@ -71,19 +80,11 @@ public class Disciplina {
         this.observacao = observacao;
     }
 
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }
-
     @Override
     public String toString() {
         return nome;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
