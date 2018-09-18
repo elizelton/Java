@@ -68,7 +68,7 @@
                     <contextMenu>
                         <ContextMenu>
                             <items>
-                                <MenuItem fx:id="mnVerBoletim" mnemonicParsing="false" onAction="#mostraDisciplinasAluno" text="Ver Boletim">
+                                <MenuItem fx:id="mnVerBoletim" mnemonicParsing="false" onAction="#tblVwAlunosClick" text="Ver Boletim">
                                     <graphic>
                                         <MaterialDesignIconView glyphName="EYE" size="1.1em" />
                                     </graphic>

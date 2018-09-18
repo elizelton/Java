@@ -10,6 +10,7 @@
 <?import javafx.scene.control.cell.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
+
 <AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BoletimController">
     <children>
         <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -30,7 +31,7 @@
                         <Insets left="10.0" />
                     </padding>
                 </HBox>
-                <TableView fx:id="tblViewBoletim" onMouseClicked="#mostraDisciplinasAluno" prefHeight="350.0" prefWidth="310.0">
+                <TableView fx:id="tblViewBoletim" onMouseClicked="#tblVwDisciplinaClick" prefHeight="350.0" prefWidth="310.0">
                     <columns>
                         <TableColumn maxWidth="350.0" prefWidth="234.0" text="Nome">
                             <cellValueFactory>

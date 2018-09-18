@@ -86,6 +86,7 @@ public class CRUDAlunoController implements Initializable {
     private void btnCancelaClick() {
         anchorPane.getScene().getWindow().hide();
         controllerPai.tblViewAlunos.requestFocus();
+        anchorPane.getScene().getWindow().hide();
     }
 
     @FXML

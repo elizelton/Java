@@ -68,26 +68,13 @@ public class AlunoController implements Initializable {
     }
 
     @FXML
-    public void tblVwDisciplinaClick(Event event) {
-        MouseEvent me = null;
-        if (event.getEventType() == MOUSE_CLICKED && tblViewAlunos.getSelectionModel().getSelectedItem() != null);
-        {
-            me = (MouseEvent) event;
-            if (me.getClickCount() == 2) {
-
-            }
-        }
-
-    }
-
-    @FXML
     private void tblVwAlunosClick(Event event) {
         MouseEvent me = null;
-        if (event.getEventType() == MOUSE_CLICKED) {
+        if (event.getEventType() == MOUSE_CLICKED && tblViewAlunos.getSelectionModel().getSelectedItem() != null) {
             me = (MouseEvent) event;
-            if (me.getClickCount() == 2 && tblViewAlunos.getSelectionModel().getSelectedItem() != null) {
+            if (me.getClickCount() == 2) {
                 aluno = tblViewAlunos.getSelectionModel().getSelectedItem();
-                mostraDisciplinasAluno();
+                showDisciplinaAluno();
             }
         }
     }
@@ -123,20 +110,11 @@ public class AlunoController implements Initializable {
                 FXCollections.observableList(alunoRepository.findAll(new Sort(new Sort.Order("nome")))));
     }
 
-    public void showDisciplinaAluno() {
+    @FXML
+    private void showDisciplinaAluno() {
         aluno = tblViewAlunos.getSelectionModel().getSelectedItem();
         String cena = "/fxml/Boletim.fxml";
         XPopOver popOver = new XPopOver(cena, String.format("Boletim Academico - %s ", aluno.getNome()), null);
-        BoletimController controllerFilho = popOver.getLoader().getController();
-        controllerFilho.setCadastroController(this);
-    }
-
-    @FXML
-    private void mostraDisciplinasAluno() {
-        aluno = tblViewAlunos.getSelectionModel().getSelectedItem();
-        String cena = "/fxml/Boletim.fxml";
-        XPopOver popOver = null;
-        popOver = new XPopOver(cena, "Boletim Acadêmico", null);
         BoletimController controllerFilho = popOver.getLoader().getController();
         controllerFilho.setCadastroController(this);
     }

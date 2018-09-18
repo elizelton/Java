@@ -50,8 +50,7 @@ public class BoletimController implements Initializable {
     }
 
     @FXML
-    private void mostraDisciplinasAluno() {
-        matricula = tblViewBoletim.getSelectionModel().getSelectedItem();
+    private void showDisciplinasAluno() {
         String cena = "/fxml/CRUDBoletim.fxml";
         XPopOver popOver = new XPopOver(cena, "Editar Disciplina - Boletim Acadêmico", null);
         CRUDBoletimController controllerFilho = popOver.getLoader().getController();
@@ -60,17 +59,17 @@ public class BoletimController implements Initializable {
 
     @FXML
     private void btnFecharClick() {
-//       anchorPane.
+        anchorPane.getScene().getWindow().hide();
     }
 
     @FXML
     public void tblVwDisciplinaClick(Event event) {
         MouseEvent me = null;
-        if (event.getEventType() == MOUSE_CLICKED && tblViewBoletim.getSelectionModel().getSelectedItem() != null);
-        {
+        if (event.getEventType() == MOUSE_CLICKED && tblViewBoletim.getSelectionModel().getSelectedItem() != null) {
             me = (MouseEvent) event;
             if (me.getClickCount() == 2) {
                 matricula = tblViewBoletim.getSelectionModel().getSelectedItem();
+                showDisciplinasAluno();
             }
         }
     }
