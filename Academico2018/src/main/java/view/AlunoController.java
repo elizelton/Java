@@ -9,7 +9,6 @@ import static config.Config.ALTERAR;
 import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
 import static config.DAO.alunoRepository;
-import static config.DAO.alunoRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,10 +36,12 @@ public class AlunoController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @FXML
-    public TableView<Aluno> tblViewAlunos;
     public char acao;
     public Aluno aluno;
+    @FXML
+    public TableView<Aluno> tblViewAlunos;
+    @FXML
+    MenuItem mnVerBoletim;
     @FXML
     private MaterialDesignIconView btnIncluir;
     @FXML
@@ -77,6 +78,18 @@ public class AlunoController implements Initializable {
             }
         }
 
+    }
+
+    @FXML
+    private void tblVwAlunosClick(Event event) {
+        MouseEvent me = null;
+        if (event.getEventType() == MOUSE_CLICKED) {
+            me = (MouseEvent) event;
+            if (me.getClickCount() == 2 && tblViewAlunos.getSelectionModel().getSelectedItem() != null) {
+                aluno = tblViewAlunos.getSelectionModel().getSelectedItem();
+                mostraDisciplinasAluno();
+            }
+        }
     }
 
     @FXML
@@ -118,6 +131,16 @@ public class AlunoController implements Initializable {
         controllerFilho.setCadastroController(this);
     }
 
+    @FXML
+    private void mostraDisciplinasAluno() {
+        aluno = tblViewAlunos.getSelectionModel().getSelectedItem();
+        String cena = "/fxml/Boletim.fxml";
+        XPopOver popOver = null;
+        popOver = new XPopOver(cena, "Boletim Acadêmico", null);
+        BoletimController controllerFilho = popOver.getLoader().getController();
+        controllerFilho.setCadastroController(this);
+    }
+
     private void showCRUD() {
         String cena = "/fxml/CRUDAluno.fxml";
         XPopOver popOver = null;
@@ -144,6 +167,7 @@ public class AlunoController implements Initializable {
         btnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
         mnAlterar.visibleProperty().bind(btnAlterar.visibleProperty());
         mnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
+        mnVerBoletim.visibleProperty().bind(btnAlterar.visibleProperty());
         btnPesquisar.disableProperty().bind(txtFldPesquisar.textProperty().isEmpty());
     }
 

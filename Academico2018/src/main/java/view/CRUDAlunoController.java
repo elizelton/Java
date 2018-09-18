@@ -10,9 +10,12 @@ import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
 import static config.DAO.cidadeRepository;
 import static config.DAO.alunoRepository;
+import static config.DAO.disciplinaRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -27,6 +30,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Cidade;
+import model.Disciplina;
+import model.Matricula;
+import org.controlsfx.control.ListSelectionView;
 import org.controlsfx.control.PopOver;
 import org.springframework.data.domain.Sort;
 import utility.XPopOver;
@@ -40,29 +46,27 @@ public class CRUDAlunoController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    public char acao;
+    public Cidade cidade;
     private AlunoController controllerPai;
-
+    private final char separadorDecimal
+            = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
     @FXML
     private TextField txtFldCodigo;
-
     @FXML
     private TextField txtFldNome;
     @FXML
     private TextField txtFldEmail;
-
     @FXML
     private AnchorPane anchorPane;
-
     @FXML
     private Button btnConfirma;
-
     @FXML
     public ComboBox cmbCidade;
     @FXML
-    public DatePicker dtPickNasc;
-
-    public char acao;
-    public Cidade cidade;
+    public DatePicker dtPckrNascimento;
+    @FXML
+    private ListSelectionView<Disciplina> lstSelDisciplina;
     @FXML
     private MaterialDesignIconView btnIncluir;
     @FXML
@@ -77,8 +81,6 @@ public class CRUDAlunoController implements Initializable {
     private MenuItem mnAlterar;
     @FXML
     private MenuItem mnExcluir;
-    private final char separadorDecimal
-            = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
 
     @FXML
     private void btnCancelaClick() {
@@ -92,8 +94,27 @@ public class CRUDAlunoController implements Initializable {
         controllerPai.aluno.setNome(txtFldNome.getText());
         controllerPai.aluno.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
         controllerPai.aluno.setEmail(txtFldEmail.getText());
-        controllerPai.aluno.setDataNascimento(dtPickNasc.getValue());
-        
+        controllerPai.aluno.setDataNascimento(dtPckrNascimento.getValue());
+        List<Matricula> lstTemp = new ArrayList<>();
+        if (controllerPai.aluno.getMatriculas() != null) {
+            for (Matricula ant : controllerPai.aluno.getMatriculas()) {
+                if (lstSelDisciplina.getTargetItems().contains(ant.getDisciplina())) {
+                    lstTemp.add(ant);
+                    lstSelDisciplina.getTargetItems().remove(ant.getDisciplina());
+                }
+                lstTemp.add(ant);
+            }
+        }
+        if (controllerPai.aluno.getMatriculas() != null) {
+            for (Matricula m : controllerPai.aluno.getMatriculas()) {
+                lstTemp.add(m);
+            }
+        }
+        for (Disciplina nv : lstSelDisciplina.getTargetItems()) {
+            Matricula mat = new Matricula(nv, 0, 0, 0, 0);
+            lstTemp.add(mat);
+        }
+        controllerPai.aluno.setMatriculas(lstTemp);
         try {
             switch (controllerPai.acao) {
                 case INCLUIR:
@@ -113,9 +134,7 @@ public class CRUDAlunoController implements Initializable {
             controllerPai.tblViewAlunos.getSelectionModel().clearSelection();
             controllerPai.tblViewAlunos.getSelectionModel().select(controllerPai.aluno);
             anchorPane.getScene().getWindow().hide();
-//
         } catch (Exception e) {
-
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Cadastro de Disciplina");
@@ -125,7 +144,6 @@ public class CRUDAlunoController implements Initializable {
                 alert.setContentText(e.getMessage());
             }
             alert.showAndWait();
-
         }
     }
 
@@ -142,7 +160,20 @@ public class CRUDAlunoController implements Initializable {
         txtFldCodigo.setText(controllerPai.aluno.getRa());
         txtFldNome.setText(controllerPai.aluno.getNome());
         txtFldEmail.setText(controllerPai.aluno.getEmail());
-        dtPickNasc.setValue(controllerPai.aluno.getDataNascimento());
+        dtPckrNascimento.setValue(controllerPai.aluno.getDataNascimento());
+        List<Disciplina> todasDisciplinas = disciplinaRepository.findAll(new Sort(new Sort.Order("nome")));
+
+        if (controllerPai.aluno.getMatriculas() != null) {
+            List<Disciplina> lstAtual = new ArrayList<>();
+            for (Matricula nv : controllerPai.aluno.getMatriculas()) {
+                lstAtual.add(nv.getDisciplina());
+
+            }
+            todasDisciplinas.removeAll(lstAtual);
+            lstSelDisciplina.getTargetItems().addAll(lstAtual);
+
+        }
+        lstSelDisciplina.getSourceItems().addAll(todasDisciplinas);
         cmbCidade.setItems(FXCollections.observableList(
                 cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
 
@@ -153,8 +184,7 @@ public class CRUDAlunoController implements Initializable {
         txtFldCodigo.setDisable(controllerPai.acao == EXCLUIR);
         txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
         txtFldEmail.setDisable(controllerPai.acao == EXCLUIR);
-        dtPickNasc.setDisable(controllerPai.acao == EXCLUIR);
-        cmbCidade.setDisable(controllerPai.acao == EXCLUIR);
+        dtPckrNascimento.setDisable(controllerPai.acao == EXCLUIR);
 
     }
     private final ChangeListener<? super String> listenerCpf
@@ -175,7 +205,6 @@ public class CRUDAlunoController implements Initializable {
         acao = INCLUIR;
         cidade = new Cidade();
         showCRUD();
-
     }
 
     @FXML
@@ -183,7 +212,6 @@ public class CRUDAlunoController implements Initializable {
         acao = ALTERAR;
         cidade = (Cidade) cmbCidade.getSelectionModel().getSelectedItem();
         showCRUD();
-
     }
 
     private void showCRUD() {
@@ -192,10 +220,10 @@ public class CRUDAlunoController implements Initializable {
 
         switch (acao) {
             case INCLUIR:
-                popOver = new XPopOver(cena, "Inclusão de Cidade", btnIncluir, PopOver.ArrowLocation.TOP_CENTER);
+                popOver = new XPopOver(cena, "Inclusão de Cidade", btnIncluir, PopOver.ArrowLocation.TOP_RIGHT);
                 break;
             case ALTERAR:
-                popOver = new XPopOver(cena, "Alteração de Cidade", btnAlterar, PopOver.ArrowLocation.TOP_CENTER);
+                popOver = new XPopOver(cena, "Alteração de Cidade", btnAlterar, PopOver.ArrowLocation.TOP_RIGHT);
                 break;
         }
         CRUDCidadeAlunoController controllerFilho = popOver.getLoader().getController();

@@ -60,7 +60,6 @@ public class XPopOver {
                 popOver.setTitle(titulo);
                 popOver.show(node);
             }
-
         } catch (IOException ex) {
             Logger.getLogger(XPopOver.class.getName()).log(Level.SEVERE, null, ex);
         }

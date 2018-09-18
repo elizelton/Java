@@ -19,6 +19,7 @@ import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 import javafx.scene.layout.AnchorPane;
 import model.Aluno;
 import model.Matricula;
+import utility.XPopOver;
 
 /**
  * FXML Controller class
@@ -48,6 +49,21 @@ public class BoletimController implements Initializable {
         tblViewBoletim.setItems(FXCollections.observableArrayList(controllerPai.aluno.getMatriculas()));
     }
 
+    @FXML
+    private void mostraDisciplinasAluno() {
+        matricula = tblViewBoletim.getSelectionModel().getSelectedItem();
+        String cena = "/fxml/CRUDBoletim.fxml";
+        XPopOver popOver = new XPopOver(cena, "Editar Disciplina - Boletim Acadêmico", null);
+        CRUDBoletimController controllerFilho = popOver.getLoader().getController();
+        controllerFilho.setCadastroController(this);
+    }
+
+    @FXML
+    private void btnFecharClick() {
+//       anchorPane.
+    }
+
+    @FXML
     public void tblVwDisciplinaClick(Event event) {
         MouseEvent me = null;
         if (event.getEventType() == MOUSE_CLICKED && tblViewBoletim.getSelectionModel().getSelectedItem() != null);
@@ -55,15 +71,12 @@ public class BoletimController implements Initializable {
             me = (MouseEvent) event;
             if (me.getClickCount() == 2) {
                 matricula = tblViewBoletim.getSelectionModel().getSelectedItem();
-                
             }
         }
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
 }
