@@ -7,12 +7,11 @@ package repository;
 
 import java.util.List;
 import model.Aluno;
-import model.Disciplina;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  *
- * @author Muriel
+ * @author Elizelton
  */
 public interface AlunoRepository extends MongoRepository<Aluno, String> {
 

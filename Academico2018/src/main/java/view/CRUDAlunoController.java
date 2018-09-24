@@ -8,12 +8,14 @@ package view;
 import static config.Config.ALTERAR;
 import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
+import static config.Config.df;
 import static config.DAO.cidadeRepository;
 import static config.DAO.alunoRepository;
 import static config.DAO.disciplinaRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -39,7 +41,7 @@ import utility.XPopOver;
 
 /**
  *
- * @author Muriel
+ * @author Elizelton
  */
 public class CRUDAlunoController implements Initializable {
 
@@ -81,6 +83,8 @@ public class CRUDAlunoController implements Initializable {
     private MenuItem mnAlterar;
     @FXML
     private MenuItem mnExcluir;
+    @FXML
+    private TextField txtFldDtCadastro;
 
     @FXML
     private void btnCancelaClick() {
@@ -96,6 +100,8 @@ public class CRUDAlunoController implements Initializable {
         controllerPai.aluno.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
         controllerPai.aluno.setEmail(txtFldEmail.getText());
         controllerPai.aluno.setDataNascimento(dtPckrNascimento.getValue());
+        System.out.println(2018 - dtPckrNascimento.getValue().getYear());
+        controllerPai.aluno.setDataCadastro(LocalDate.now());
         List<Matricula> lstTemp = new ArrayList<>();
         if (controllerPai.aluno.getMatriculas() != null) {
             for (Matricula ant : controllerPai.aluno.getMatriculas()) {
@@ -103,14 +109,9 @@ public class CRUDAlunoController implements Initializable {
                     lstTemp.add(ant);
                     lstSelDisciplina.getTargetItems().remove(ant.getDisciplina());
                 }
-                lstTemp.add(ant);
             }
         }
-        if (controllerPai.aluno.getMatriculas() != null) {
-            for (Matricula m : controllerPai.aluno.getMatriculas()) {
-                lstTemp.add(m);
-            }
-        }
+
         for (Disciplina nv : lstSelDisciplina.getTargetItems()) {
             Matricula mat = new Matricula(nv, 0, 0, 0, 0);
             lstTemp.add(mat);
@@ -162,6 +163,8 @@ public class CRUDAlunoController implements Initializable {
         txtFldNome.setText(controllerPai.aluno.getNome());
         txtFldEmail.setText(controllerPai.aluno.getEmail());
         dtPckrNascimento.setValue(controllerPai.aluno.getDataNascimento());
+        txtFldDtCadastro.setText(controllerPai.aluno.getDataCadastroFormat());
+
         List<Disciplina> todasDisciplinas = disciplinaRepository.findAll(new Sort(new Sort.Order("nome")));
 
         if (controllerPai.aluno.getMatriculas() != null) {

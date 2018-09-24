@@ -6,17 +6,19 @@
 package model;
 
 import java.util.Objects;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
- * @author Muriel
+ * @author Elizelton
  */
 @Document
 public class Matricula {
 
     @DBRef
+    @Indexed(unique = true)
     private Disciplina disciplina;
     private int nota1Sem;
     private int nota2Sem;
@@ -32,7 +34,7 @@ public class Matricula {
         setNota2Sem(nota2Sem);
         setNotaExam(notaExam);
         setFaltas(faltas);
-        
+
     }
 
     public Disciplina getDisciplina() {

@@ -17,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Disciplina;
@@ -27,7 +28,7 @@ import utility.XPopOver;
 /**
  * FXML Controller class
  *
- * @author Muriel
+ * @author Elizelton
  */
 public class DisciplinaController implements Initializable {
 
@@ -120,7 +121,21 @@ public class DisciplinaController implements Initializable {
         mnAlterar.visibleProperty().bind(btnAlterar.visibleProperty());
         mnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
         btnPesquisar.disableProperty().bind(txtFldPesquisar.textProperty().isEmpty());
+        tblView.setRowFactory(tableView
+                -> {
+            TableRow<Disciplina> row = new TableRow<>();
 
+            row.itemProperty().addListener(
+                    (observable, oldValue, newValue) -> {
+                        if (newValue != null
+                        && newValue.getAulas() == 0) {
+                            row.getStyleClass().add("cargaHorariaZerada");
+                        } else {
+                            row.getStyleClass().remove("cargaHorariaZerada");
+                        }
+                    });
+            return row;
+        });
     }
 
 }

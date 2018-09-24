@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
- * @author Muriel
+ * @author Elizelton
  */
 @Document
 public class Aluno {
@@ -31,6 +31,8 @@ public class Aluno {
     private String ra;
 
     private LocalDate dataNascimento;
+    private LocalDate dataCadastro;
+
     @DBRef
     private Cidade cidade;
     private List<Matricula> matriculas = new ArrayList<>();
@@ -42,11 +44,27 @@ public class Aluno {
         return dataNascimento;
     }
 
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
     public String getDataNascimentoFormat() {
         if (dataNascimento != null) {
             return df.format(dataNascimento);
         } else {
             return "00/00/0000";
+        }
+    }
+
+    public String getDataCadastroFormat() {
+        if (dataCadastro != null) {
+            return df.format(dataCadastro);
+        } else {
+            return df.format(LocalDate.now());
         }
     }
 
@@ -62,6 +80,11 @@ public class Aluno {
         this.matriculas = matriculas;
     }
 
+    public void setMatricula(Matricula matricula) {
+        this.matriculas.remove(matricula);
+        this.matriculas.add(matricula);        
+    }
+
     public Aluno(String nome, String email, String ra, Cidade cidade) {
         this.nome = nome;
         this.email = email;
@@ -69,7 +92,7 @@ public class Aluno {
         this.cidade = cidade;
     }
 
-    public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade,
+    public Aluno(String nome, String email, String ra, LocalDate dataNascimento, LocalDate dataCadastro, Cidade cidade,
             List<Matricula> matriculas) {
         this.nome = nome;
         this.email = email;
@@ -77,6 +100,7 @@ public class Aluno {
         this.dataNascimento = dataNascimento;
         this.cidade = cidade;
         this.matriculas = matriculas;
+        this.dataCadastro = dataCadastro;
     }
 
     public int getDisciplinasQtd() {

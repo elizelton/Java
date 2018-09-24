@@ -13,6 +13,8 @@ import static config.DAO.disciplinaRepository;
 import static config.DAO.professorRepository;
 import static config.DAO.cidadeRepository;
 import static config.DAO.ufRepository;
+import static config.DAO.departamentoRepository;
+import model.Departamento;
 import model.Matricula;
 
 public class PrincipalController implements Initializable {
@@ -29,6 +31,16 @@ public class PrincipalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+//        Departamento dpto = new Departamento("INF", "Informática");
+//        departamentoRepository.save(dpto);
+//        dpto = new Departamento("GEO", "Geografia");
+//        departamentoRepository.save(dpto);
+//        dpto = new Departamento("HIS", "História");
+//        departamentoRepository.save(dpto);
+//        dpto = new Departamento("BIO", "Biológicas");
+//        departamentoRepository.save(dpto);
+
 //        lstMatricula.add(new Matricula(disciplinaRepository.findByCodigo("5"), 70, 75, 0, 2));
 //
 //        for (Matricula m : lstMatricula) {

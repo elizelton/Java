@@ -8,7 +8,6 @@ package view;
 import static config.Config.ALTERAR;
 import static config.Config.INCLUIR;
 import static config.DAO.cidadeRepository;
-import static config.DAO.professorRepository;
 import static config.DAO.ufRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
@@ -28,7 +27,7 @@ import utility.XPopOver;
 /**
  * FXML Controller class
  *
- * @author Muriel
+ * @author Elizelton
  */
 public class CRUDCidadeAlunoController implements Initializable {
 

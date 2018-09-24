@@ -61,14 +61,14 @@
             
             <HBox alignment="TOP_RIGHT" spacing="10.0">
                 <children>
-                    <Button mnemonicParsing="false" onAction="#btnCancelaClick" prefWidth="100.0" text="Cancela">
-                        <graphic>
-                            <MaterialDesignIconView glyphName="CLOSE" />
-                        </graphic>
-                    </Button>
                     <Button fx:id="btnConfirma" mnemonicParsing="false" onAction="#btnConfirmaClick" prefWidth="100.0" text="Confirma">
                         <graphic>
                             <MaterialDesignIconView glyphName="CHECK" />
+                        </graphic>
+                    </Button>
+                    <Button mnemonicParsing="false" onAction="#btnCancelaClick" prefWidth="100.0" text="Cancela">
+                        <graphic>
+                            <MaterialDesignIconView glyphName="CLOSE" />
                         </graphic>
                     </Button>
                 </children>

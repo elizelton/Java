@@ -34,7 +34,7 @@ import utility.XPopOver;
 /**
  * FXML Controller class
  *
- * @author Muriel
+ * @author Elizelton
  */
 public class CRUDProfessorController implements Initializable {
 

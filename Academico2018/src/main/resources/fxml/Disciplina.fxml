@@ -41,22 +41,22 @@
                                 <PropertyValueFactory property="codigo" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="350.0" prefWidth="350.0" text="Nome">
+                        <TableColumn maxWidth="350.0" prefWidth="328.0" text="Nome">
                             <cellValueFactory>
                                 <PropertyValueFactory property="nome" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="40.0" text="Aulas">
+                        <TableColumn prefWidth="62.0" text="Aulas">
                             <cellValueFactory>
                                 <PropertyValueFactory property="aulas" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="250.0" prefWidth="100.0" text="Professor">
+                        <TableColumn maxWidth="250.0" prefWidth="133.0" text="Professor">
                             <cellValueFactory>
                                 <PropertyValueFactory property="primeiroNome" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="250.0" text="Observação">
+                        <TableColumn prefWidth="217.0" text="Observação">
                             <cellValueFactory>
                                 <PropertyValueFactory property="observacao" />
                             </cellValueFactory>
@@ -67,17 +67,17 @@
                             <items>
                                 <MenuItem fx:id="mnIncluir" mnemonicParsing="false" onAction="#acIncluir" text="Incluir">
                                     <graphic>
-                                        <MaterialDesignIconView  glyphName="PLUS"  size="1.1em" />
+                                        <MaterialDesignIconView glyphName="PLUS" size="1.1em" />
                                     </graphic>
                                 </MenuItem>
-                                <MenuItem fx:id="mnAlterar" mnemonicParsing="false" onAction="#acAlterar" text="Alterar" >
+                                <MenuItem fx:id="mnAlterar" mnemonicParsing="false" onAction="#acAlterar" text="Alterar">
                                     <graphic>
-                                        <MaterialDesignIconView  glyphName="PENCIL"  size="1.1em" />
+                                        <MaterialDesignIconView glyphName="PENCIL" size="1.1em" />
                                     </graphic>
                                 </MenuItem>
-                                <MenuItem fx:id="mnExcluir" mnemonicParsing="false" onAction="#acExcluir" text="Excluir" >
+                                <MenuItem fx:id="mnExcluir" mnemonicParsing="false" onAction="#acExcluir" text="Excluir">
                                     <graphic>
-                                        <MaterialDesignIconView  glyphName="DELETE"  size="1.1em" />
+                                        <MaterialDesignIconView glyphName="DELETE" size="1.1em" />
                                     </graphic>
                                 </MenuItem>
                             </items>

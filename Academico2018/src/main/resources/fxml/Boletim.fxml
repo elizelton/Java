@@ -11,11 +11,11 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BoletimController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BoletimController">
     <children>
-        <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="400.0" prefWidth="547.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="449.0" spacing="10.0">
                     <children>
                         <Label text="Nome do Acadêmico: " />
                         <Label fx:id="lblNomeAluno">
@@ -31,19 +31,19 @@
                         <Insets left="10.0" />
                     </padding>
                 </HBox>
-                <TableView fx:id="tblViewBoletim" onMouseClicked="#tblVwDisciplinaClick" prefHeight="350.0" prefWidth="310.0">
+                <TableView fx:id="tblViewBoletim" onMouseClicked="#tblVwDisciplinaClick" prefHeight="303.0" prefWidth="554.0">
                     <columns>
-                        <TableColumn maxWidth="350.0" prefWidth="234.0" text="Nome">
+                        <TableColumn maxWidth="350.0" prefWidth="202.0" text="Nome">
                             <cellValueFactory>
                                 <PropertyValueFactory property="disciplina" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="1º Semestre">
+                        <TableColumn prefWidth="96.0" text="1º Semestre">
                             <cellValueFactory>
                                 <PropertyValueFactory property="nota1Sem" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="2º Semestre">
+                        <TableColumn prefWidth="86.0" text="2º Semestre">
                             <cellValueFactory>
                                 <PropertyValueFactory property="nota2Sem" />
                             </cellValueFactory>
@@ -58,7 +58,7 @@
                                 <PropertyValueFactory property="faltas" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="Situação">
+                        <TableColumn prefWidth="113.0" text="Situação">
                             <cellValueFactory>
                                 <PropertyValueFactory property="status" />
                             </cellValueFactory>

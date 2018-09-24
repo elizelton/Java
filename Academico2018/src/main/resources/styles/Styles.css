@@ -1,3 +1,16 @@
 .button {
     -fx-font-weight: bold;
 }
+
+.cargaHorariaZerada {
+    -webkit-border-before: 2px dotted;
+   -fx-font-weight: bold; /* Aplica negrito. */
+   -fx-background: red;
+}
+
+.alunoReprovado {
+    -fx-font-weight: bold; /* Aplica negrito. */
+    -fx-background: green;
+    /*-fx-mid-text-color: green; /* Se algo não está selecionado ficará em verde. */
+    /*-fx-light-text-color: red;  Quando algo está selecionado ficará em amarelo. */
+}    

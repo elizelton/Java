@@ -10,7 +10,7 @@ import model.Uf;
 import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  *
- * @author Muriel
+ * @author Elizelton
  */
 public interface CidadeRepository extends MongoRepository<Cidade, String> {
     public Cidade findByNome(String nome);

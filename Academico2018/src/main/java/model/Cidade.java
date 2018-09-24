@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
- * @author Muriel
+ * @author Elizelton
  */
 @Document
 //        @CompoundIndexes({

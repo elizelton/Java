@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package repository;
-import java.util.List;
-import model.Uf;
+
+import model.Departamento;
 import org.springframework.data.mongodb.repository.MongoRepository;
+
 /**
  *
  * @author Elizelton
  */
-public interface UfRepository extends MongoRepository<Uf, String>{
-        public List<Uf> findBySiglaLikeIgnoreCase(String sigla);
+public interface DepartamentoRepository extends MongoRepository<Departamento, String> {
+
 }

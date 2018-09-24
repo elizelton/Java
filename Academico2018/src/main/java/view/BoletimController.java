@@ -6,6 +6,8 @@ package view;
  * and open the template in the editor.
  */
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
@@ -13,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
@@ -30,6 +33,8 @@ public class BoletimController implements Initializable {
 
     private AlunoController controllerPai;
     public Matricula matricula;
+//    private List<Matricula> matriculas = new ArrayList<>();
+
     public Aluno aluno;
 
     @FXML
@@ -52,7 +57,7 @@ public class BoletimController implements Initializable {
     @FXML
     private void showDisciplinasAluno() {
         String cena = "/fxml/CRUDBoletim.fxml";
-        XPopOver popOver = new XPopOver(cena, "Editar Disciplina - Boletim Acadêmico", null);
+        XPopOver popOver = new XPopOver(cena, String.format("Editar Disciplina - Boletim Acadêmico: %s", aluno.getNome()), null);
         CRUDBoletimController controllerFilho = popOver.getLoader().getController();
         controllerFilho.setCadastroController(this);
     }
@@ -76,6 +81,21 @@ public class BoletimController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        tblViewBoletim.setRowFactory(tableView
+                -> {
+            TableRow<Matricula> row = new TableRow<>();
+
+            row.itemProperty().addListener(
+                    (observable, oldValue, newValue) -> {
+                        if (newValue != null
+                        && newValue.getStatus().contains("Reprovado")) {
+                            row.getStyleClass().add("alunoReprovado");
+                        } else {
+                            row.getStyleClass().remove("alunoReprovado");
+                        }
+                    });
+            return row;
+        });
     }
 
 }
