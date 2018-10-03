@@ -10,18 +10,25 @@ import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
 import static config.DAO.professorRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import model.Professor;
 import org.springframework.data.domain.Sort;
+import utility.Json;
 import utility.XPopOver;
 
 /**
@@ -59,6 +66,68 @@ public class ProfessorController implements Initializable {
     private MenuItem mnExcluir;
     @FXML
     private MenuItem mnDisciplinas;
+
+    @FXML
+    private void btnImportarClick() {
+        final Stage stage = null;
+        String nomeArq;
+//        List<Professor> tempProf = new ArrayList<Professor>();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Importação Lista de Professor .JSON");
+//        Diretorio inicial Linux
+//        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
+//        Diretorio inicial Windows
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "Arquivo JSON", "*.json"
+        );
+        fileChooser.getExtensionFilters().add(extFilter);
+        nomeArq = String.valueOf(fileChooser.showOpenDialog(stage));
+
+        if (nomeArq.isEmpty()) {
+            System.out.println(nomeArq);
+            try {
+                Json jsonProfessor = new Json(nomeArq);
+                professorRepository.save(jsonProfessor.ImportarJsonProfessor());
+                tblView.setItems(FXCollections.observableList(professorRepository.findAll(new Sort(new Sort.Order("nome")))));
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Importação de Professor");
+                if (e.getMessage().contains("duplicate key")) {
+                    alert.setContentText("Professor(es) já Cadastrado(s)!");
+                } else {
+                    alert.setContentText(e.getMessage());
+                }
+                alert.showAndWait();
+            }
+        }
+    }
+
+    @FXML
+    private void btnExportarClick() {
+        final Stage stage = null;
+        List<Professor> tempProf = new ArrayList<Professor>();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName("Professor");
+        fileChooser.setTitle("Exportar Lista de Professor .JSON");
+
+//        Diretorio inicial Linux
+//        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
+//        Diretorio inicial Windows
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "Arquivo JSON", "*.json"
+        );
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        Json jsonProfessor = new Json(String.valueOf(fileChooser.showSaveDialog(stage)));
+
+        tempProf = professorRepository.findAll();
+
+        jsonProfessor.ExportarJsonProfessor(tempProf);
+
+    }
 
     @FXML
     private void acIncluir() {
