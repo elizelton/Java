@@ -66,7 +66,6 @@ public class CRUDProfessorController implements Initializable {
     private final char separadorDecimal
             = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
 
-
     @FXML
     private void btnCancelaClick() {
         anchorPane.getScene().getWindow().hide();
@@ -128,8 +127,6 @@ public class CRUDProfessorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         btnConfirma.disableProperty().bind(txtFldCodigo.textProperty().isEmpty().
-                or(txtFldNome.textProperty().isEmpty()).or(txtFldEmail.textProperty().isEmpty()).or(cmbCidade.getSelectionModel().selectedItemProperty().isNull()));
         btnAlterar.visibleProperty().bind(cmbCidade.getSelectionModel().selectedItemProperty().isNotNull());
 //        txtFldCodigo.textProperty().addListener(listenerCpf);
     }
@@ -150,6 +147,10 @@ public class CRUDProfessorController implements Initializable {
         txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
         txtFldEmail.setDisable(controllerPai.acao == EXCLUIR);
         cmbCidade.setDisable(controllerPai.acao == EXCLUIR);
+        if (controllerPai.acao != EXCLUIR) {
+            btnConfirma.disableProperty().bind(txtFldCodigo.textProperty().isEmpty().
+                    or(txtFldNome.textProperty().isEmpty()).or(txtFldEmail.textProperty().isEmpty()).or(cmbCidade.getSelectionModel().selectedItemProperty().isNull()));
+        }
 
     }
 //      private final ChangeListener<? super String> listenerCpf = (observable, oldValue, newValue) -> {
@@ -160,6 +161,7 @@ public class CRUDProfessorController implements Initializable {
 //                    txtFldCodigo.setText(newValue);
 //                }
 //            };
+
     /**
      * CRUD CIDADE
      */
@@ -188,12 +190,11 @@ public class CRUDProfessorController implements Initializable {
                 popOver = new XPopOver(cena, "Inclusão de Cidade", btnIncluir, PopOver.ArrowLocation.TOP_CENTER);
                 break;
             case ALTERAR:
-                popOver = new XPopOver(cena, "Alteração de Cidade", btnAlterar,PopOver.ArrowLocation.TOP_CENTER);
+                popOver = new XPopOver(cena, "Alteração de Cidade", btnAlterar, PopOver.ArrowLocation.TOP_CENTER);
                 break;
         }
         CRUDCidadeProfessorController controllerFilho = popOver.getLoader().getController();
         controllerFilho.setCadastroController(this);
     }
-     
-     
+
 }

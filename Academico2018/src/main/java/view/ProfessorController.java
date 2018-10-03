@@ -71,6 +71,7 @@ public class ProfessorController implements Initializable {
     private void btnImportarClick() {
         final Stage stage = null;
         String nomeArq;
+        List<Professor> ListProfTemp = new ArrayList<Professor>();
 //        List<Professor> tempProf = new ArrayList<Professor>();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Importação Lista de Professor .JSON");
@@ -84,18 +85,21 @@ public class ProfessorController implements Initializable {
         fileChooser.getExtensionFilters().add(extFilter);
         nomeArq = String.valueOf(fileChooser.showOpenDialog(stage));
 
-        if (nomeArq.isEmpty()) {
-            System.out.println(nomeArq);
+        Json jsonProfessor = new Json(nomeArq);
+        ListProfTemp = jsonProfessor.ImportarJsonProfessor();
+
+        for (Professor p : ListProfTemp) {
             try {
-                Json jsonProfessor = new Json(nomeArq);
-                professorRepository.save(jsonProfessor.ImportarJsonProfessor());
+                professorRepository.save(p);
                 tblView.setItems(FXCollections.observableList(professorRepository.findAll(new Sort(new Sort.Order("nome")))));
+                tblView.refresh();
             } catch (Exception e) {
+                System.out.println(e);
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erro");
                 alert.setHeaderText("Importação de Professor");
                 if (e.getMessage().contains("duplicate key")) {
-                    alert.setContentText("Professor(es) já Cadastrado(s)!");
+                    alert.setContentText(String.format("Professor:%s já Cadastrado!", p.getNome()));
                 } else {
                     alert.setContentText(e.getMessage());
                 }
@@ -109,16 +113,14 @@ public class ProfessorController implements Initializable {
         final Stage stage = null;
         List<Professor> tempProf = new ArrayList<Professor>();
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialFileName("Professor");
+        fileChooser.setInitialFileName("Lista_de_Professor");
         fileChooser.setTitle("Exportar Lista de Professor .JSON");
 
 //        Diretorio inicial Linux
 //        fileChooser.setInitialDirectory(new File("/home/elizelton/Dados"));
 //        Diretorio inicial Windows
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                "Arquivo JSON", "*.json"
-        );
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Arquivo JSON", "*.json");
         fileChooser.getExtensionFilters().add(extFilter);
 
         Json jsonProfessor = new Json(String.valueOf(fileChooser.showSaveDialog(stage)));
