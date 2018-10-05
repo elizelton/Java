@@ -99,7 +99,7 @@ public class ProfessorController implements Initializable {
                 alert.setTitle("Erro");
                 alert.setHeaderText("Importação de Professor");
                 if (e.getMessage().contains("duplicate key")) {
-                    alert.setContentText(String.format("Professor:%s já Cadastrado!", p.getNome()));
+                    alert.setContentText(String.format("Professor: %s já Cadastrado!", p.getNome().toUpperCase()));
                 } else {
                     alert.setContentText(e.getMessage());
                 }

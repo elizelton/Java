@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="127.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.FXMLController">
+    <children>
+      <VBox prefHeight="127.0" prefWidth="404.0">
+         <children>
+            <HBox alignment="TOP_CENTER" prefHeight="31.0" prefWidth="320.0" spacing="15.0">
+               <children>
+                  <HBox alignment="TOP_CENTER" spacing="10.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="IP" />
+                              <TextField fx:id="txtFldIp" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="OID" />
+                              <TextField fx:id="txtFldOid" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="338.0">
+               <children>
+                    <Label fx:id="label" minHeight="16" minWidth="69" prefHeight="20.0" prefWidth="394.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="320.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnBuscarClick" text="Buscar" />
+                    <Button fx:id="btnSair" onAction="#btnSairClick" prefHeight="25.0" prefWidth="49.0" text="Sair">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets right="10.0" />
+               </opaqueInsets>
+            </HBox>
+         </children>
+      </VBox>
+    </children>
+   <padding>
+      <Insets bottom="5.0" right="5.0" />
+   </padding>
+</AnchorPane>
